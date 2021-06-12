@@ -67,6 +67,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   accelleration: 1.5
   jumpHeight: 0.4
+  highFallParticles: {fileID: 11400000, guid: d3fa1d890ecf134499836ca0e11311fd, type: 2}
+  fallForParticles: 2
 --- !u!114 &1037557276444728607
 MonoBehaviour:
   m_ObjectHideFlags: 0

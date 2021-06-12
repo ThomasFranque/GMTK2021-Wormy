@@ -72,7 +72,9 @@ public class GarryController : MonoBehaviour, IWormGrabber
             if (endHeight >= fallForParticles)
             {
                 Physics.Raycast(transform.position, Vector3.down,out RaycastHit hit, 1f, ~LayerMask.GetMask("Player"));
-                highFallParticles.PlayPS(hit.point, hit.normal);
+                Vector3 point = hit.point;
+                point.y += 0.2f;
+                highFallParticles.PlayPS(point, hit.normal);
             }
 
             endHeight = 0;
