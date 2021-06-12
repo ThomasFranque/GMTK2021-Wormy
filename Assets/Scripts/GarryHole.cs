@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class GarryHole : MonoBehaviour
 {
-    [SerializeField] private float minForce;
-    [SerializeField] private float maxForce;
+    [SerializeField, MinMaxSlider(1f, 20f)] Vector2 garryForce;
+    [SerializeField, MinMaxSlider(1f, 10f)] Vector2 wormForce;
     [SerializeField] private bool debug;
     [SerializeField] private LayerMask blockMask;
 
@@ -15,10 +15,12 @@ public class GarryHole : MonoBehaviour
     private RaycastHit hit;
     private TrajectoryPlotter trajectory;
     private bool shootWorm;
+    private bool held;
+    private bool released;
 
-    public float HoleShootForce => Mathf.Lerp(minForce, maxForce, UniversalGameData.TotalLeafs);
+    public float HoleShootForce(Vector2 range) => Mathf.Lerp(range.x, range.y, UniversalGameData.TotalLeafs);
 
-    private void Awake() 
+    private void Awake()
     {
         controller = GetComponent<GarryController>();
         rb = GetComponent<Rigidbody>();
@@ -29,6 +31,27 @@ public class GarryHole : MonoBehaviour
         {
             UniversalGameData.Leafs = UniversalGameData.TOTAL_GAME_LEAFS;
         }
+
+        Debug.Log("Gary Hole force: " + HoleShootForce(garryForce));
+    }
+
+    private void FixedUpdate()
+    {
+        if (held && released)
+        {
+            held = released = false;
+            if (shootWorm)
+            {
+                ShootWorm();
+            }
+            else
+            {
+                ShootGary();
+            }
+
+            shootWorm = false;
+            trajectory.SetLine(false);
+        }
     }
 
     // Update is called once per frame
@@ -36,6 +59,7 @@ public class GarryHole : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) || Input.GetButtonDown("Shoot controller"))
         {
+            held = true;
             Physics.Raycast(holeTransform.position, holeTransform.forward, out hit, 5f, ~blockMask);
             Debug.DrawRay(holeTransform.position, holeTransform.forward * 5f, Color.red, 0.5f);
 
@@ -51,16 +75,7 @@ public class GarryHole : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0) || Input.GetButtonUp("Shoot controller"))
         {
-            if (shootWorm)
-            {
-                ShootWorm();
-            }
-            else
-            {
-                ShootGary();
-            }
-
-            shootWorm = false;
+            released = true;
             trajectory.SetLine(false);
         }
     }
@@ -68,12 +83,13 @@ public class GarryHole : MonoBehaviour
     private void DrawTrajectory()
     {
         Debug.Log("Drawing Trajectory");
-        trajectory?.PlotTrajectory(holeTransform.position, (holeTransform.forward * HoleShootForce) / 6f);
+        trajectory?.PlotTrajectory(holeTransform.position, (holeTransform.forward * HoleShootForce(wormForce)));
     }
 
     private void ShootGary()
     {
-        rb.AddForce((-holeTransform.forward) * HoleShootForce, ForceMode.Impulse);
+        // rb.AddForce((-holeTransform.forward) * HoleShootForce(garryForce), ForceMode.Impulse);
+        rb.velocity = (-holeTransform.forward).normalized * controller.JumpSpeed(HoleShootForce(garryForce));
     }
 
     private void ShootWorm()

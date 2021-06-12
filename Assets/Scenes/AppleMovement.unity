@@ -303,7 +303,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   accelleration: 1.5
   topSpeed: 3
-  jumpHeight: 1
+  jumpHeight: 0.4
 --- !u!114 &459951350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,8 +316,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5580435245c3e44084d04b13c54fd1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minForce: 10
-  maxForce: 30
+  garryForce: {x: 30.58, y: 30.58}
+  wormForce: {x: 2.16, y: 3.9857724}
   debug: 1
   blockMask:
     serializedVersion: 2
@@ -348,7 +348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointsCount: 12
-  timeBetweenPoints: 0.054
+  timeBetweenPoints: 0.096
   ignoreLayers:
     serializedVersion: 2
     m_Bits: 64

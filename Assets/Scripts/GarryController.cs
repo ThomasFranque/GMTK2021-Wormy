@@ -5,7 +5,6 @@ using UnityEngine;
 public class GarryController : MonoBehaviour, IWormGrabber
 {
     [SerializeField] private float accelleration;
-    [SerializeField] private float topSpeed;
     [SerializeField] private float jumpHeight;
 
     private static float gravity = Physics.gravity.y;
@@ -75,13 +74,13 @@ public class GarryController : MonoBehaviour, IWormGrabber
     void UpdateMovement()
     {
         rb.AddForce(InputDirection * accelleration, ForceMode.Acceleration);
-        rb.velocity = Vector3.ClampMagnitude(rb.velocity, topSpeed);
+        // rb.velocity = Vector3.ClampMagnitude(rb.velocity, topSpeed);
     }
 
     void JumpGarryJump()
     {
         Jumping = true;
-        rb.velocity = new Vector3(rb.velocity.x, JumpSpeed(), rb.velocity.z);
+        rb.velocity = new Vector3(rb.velocity.x, JumpSpeed(jumpHeight), rb.velocity.z);
     }
 
     private Vector3 RelativeVectorTo(Vector3 original, Transform relative)
@@ -99,7 +98,7 @@ public class GarryController : MonoBehaviour, IWormGrabber
         return finalDir;
     }
 
-    private float JumpSpeed() => Mathf.Sqrt(2 * jumpHeight * -gravity);
+    public float JumpSpeed(float jumpHeight) => Mathf.Sqrt(2 * jumpHeight * -gravity);
 
     private void OnCollisionEnter(Collision other) 
     {
