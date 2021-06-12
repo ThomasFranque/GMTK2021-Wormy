@@ -11,7 +11,7 @@ public class GarryController : MonoBehaviour, IWormGrabber
     private Vector3 velocity;
 
     public Vector3 Velocity { get; set; }
-    public bool Disabled { get; set; }
+    public static bool Disabled { get; set; }
     public bool Grounded {get; set;}
     public Vector3 InputDirection { get; private set; }
 
