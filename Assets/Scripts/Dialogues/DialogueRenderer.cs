@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class DialogueRenderer : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private static DialogueRenderer current;
+    private DialogueData currentlyShowing;
+
+    private void Awake() 
     {
-        
+        current = this;
     }
 
-    // Update is called once per frame
-    void Update()
+    public static void Indicator(Transform point = null)
     {
+        if (current == null) return;
+    }
+
+    public static void Show(DialogueData dialogue)
+    {
+        if (current == null) return;
+
+        current.currentlyShowing = dialogue;
         
     }
 }
