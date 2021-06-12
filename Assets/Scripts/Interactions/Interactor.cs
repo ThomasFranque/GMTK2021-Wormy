@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Interactor : MonoBehaviour
 {
+    public static bool Disabled {get; set;}
     IInteractable selectedInteractable;
 
     private void Update() 
     {
+        if (Disabled) return;
         if (Input.GetButtonDown("Fire1"))
         {
             Debug.Log("Tried to select: " + selectedInteractable);
@@ -17,6 +19,7 @@ public class Interactor : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) 
     {
+        if (Disabled) return;
         if (other.TryGetComponent<IInteractable>(out IInteractable inter))
         {
             selectedInteractable?.OutOfRange();
@@ -27,6 +30,7 @@ public class Interactor : MonoBehaviour
 
     private void OnTriggerStay(Collider other) 
     {
+        if (Disabled) return;
         if (selectedInteractable == null)
         {
             if (other.TryGetComponent<IInteractable>(out IInteractable t))
@@ -39,6 +43,7 @@ public class Interactor : MonoBehaviour
 
     private void OnTriggerExit(Collider other) 
     {
+        if (Disabled) return;
         if (other.GetComponent<IInteractable>() == selectedInteractable)
         {
             selectedInteractable?.OutOfRange();
