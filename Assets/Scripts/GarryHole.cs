@@ -82,7 +82,7 @@ public class GarryHole : MonoBehaviour
             trajectory.SetLine(shootWorm);
         }
 
-        if (shootWorm)
+        if (!Obstructed())
         {
             DrawTrajectory();
         }
