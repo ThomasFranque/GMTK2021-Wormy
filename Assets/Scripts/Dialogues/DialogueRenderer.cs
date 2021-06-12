@@ -174,6 +174,15 @@ public class DialogueRenderer : MonoBehaviour
 
         Debug.Log("Dialogue: " + dialogueLine);
         textBox.text = currentlyShowing.lines[dialogueLine++];
+
+        if (dialogueTween != null)
+        {
+            LeanTween.cancel(dialogueTween.uniqueId);
+        }
+
+        dialogueTween = LeanTween.scale
+            (dialogueObject.transform.GetChild(0).gameObject, new Vector3(1.2f, 1.2f, 1f), .8f).
+            setEasePunch();
     }
 
     private void SetPosition(Transform obj, Vector3 position)
