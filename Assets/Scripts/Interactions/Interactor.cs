@@ -10,6 +10,7 @@ public class Interactor : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
+            Debug.Log("Tried to select: " + selectedInteractable);
             selectedInteractable?.Interact(transform.root.gameObject);
         }
     }
@@ -24,9 +25,24 @@ public class Interactor : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay(Collider other) 
+    {
+        if (selectedInteractable == null)
+        {
+            if (other.TryGetComponent<IInteractable>(out IInteractable t))
+            {
+                selectedInteractable = t;
+                selectedInteractable.InRange();
+            }
+        }
+    }
+
     private void OnTriggerExit(Collider other) 
     {
-        selectedInteractable?.OutOfRange();
-        selectedInteractable = null;
+        if (other.GetComponent<IInteractable>() == selectedInteractable)
+        {
+            selectedInteractable?.OutOfRange();
+            selectedInteractable = null;
+        }
     }
 }
