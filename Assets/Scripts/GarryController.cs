@@ -7,7 +7,7 @@ public class GarryController : MonoBehaviour, IWormGrabber
     [SerializeField] private float accelleration;
     [SerializeField] private float jumpHeight;
     [Header("Some Visual things")]
-    [SerializeField] private ParticleSystem highFallParticles;
+    [SerializeField] private StaticParticles highFallParticles;
     [SerializeField] private float fallForParticles = 3f;
 
     private static float gravity = Physics.gravity.y;
@@ -23,8 +23,8 @@ public class GarryController : MonoBehaviour, IWormGrabber
     private bool jump;
     public bool Jumping {get; private set;}
     private float endHeight;
-    private float initialHeight;
     private bool lastFrameGrounded;
+    private RaycastHit hit;
 
     private void Awake()
     {
@@ -54,21 +54,28 @@ public class GarryController : MonoBehaviour, IWormGrabber
             }
         }
         
-        if (!Grounded && lastFrameGrounded)
+        if (!Grounded)
         {
-            // initial height
-            initialHeight = transform.position.y;
+            if (Physics.Raycast(transform.position, Vector3.down, out hit, 20f, ~LayerMask.GetMask("Player")))
+            {
+                float dist = Vector3.Distance(hit.point, transform.position);
+                if (dist > endHeight)
+                {
+                    endHeight = dist;
+                }
+            }
         }
+
         else if (Grounded && !lastFrameGrounded)
         {
-            endHeight = transform.position.y;
             Debug.Log("Reached Ground");
-            if (Mathf.Abs(endHeight - initialHeight) >= fallForParticles)
+            if (endHeight >= fallForParticles)
             {
                 Physics.Raycast(transform.position, Vector3.down,out RaycastHit hit, 1f, ~LayerMask.GetMask("Player"));
-                highFallParticles.transform.forward = hit.normal;
-                highFallParticles.Play();
+                highFallParticles.PlayPS(hit.point, hit.normal);
             }
+
+            endHeight = 0;
         }
 
 

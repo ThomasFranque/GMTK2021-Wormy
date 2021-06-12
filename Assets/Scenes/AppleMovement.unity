@@ -5035,11 +5035,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1037557276444728603, guid: 9c608c0017ecd6f40800d79be3e5ffea, type: 3}
   m_PrefabInstance: {fileID: 1037557276903625193}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &459951347 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1037557276444728602, guid: 9c608c0017ecd6f40800d79be3e5ffea, type: 3}
-  m_PrefabInstance: {fileID: 1037557276903625193}
-  m_PrefabAsset: {fileID: 0}
 --- !u!135 &459951348
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -15860,68 +15855,6 @@ CapsuleCollider:
   m_Height: 1.05
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!1001 &1856814152
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 459951347}
-    m_Modifications:
-    - target: {fileID: 8831026392091495921, guid: f4d8147c954fb514f88e7e47476c41df, type: 3}
-      propertyPath: m_Name
-      value: GroundHit High
-      objectReference: {fileID: 0}
-    - target: {fileID: 8831026392091495924, guid: f4d8147c954fb514f88e7e47476c41df, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8831026392091495924, guid: f4d8147c954fb514f88e7e47476c41df, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8831026392091495924, guid: f4d8147c954fb514f88e7e47476c41df, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.19
-      objectReference: {fileID: 0}
-    - target: {fileID: 8831026392091495924, guid: f4d8147c954fb514f88e7e47476c41df, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8831026392091495924, guid: f4d8147c954fb514f88e7e47476c41df, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 8831026392091495924, guid: f4d8147c954fb514f88e7e47476c41df, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 8831026392091495924, guid: f4d8147c954fb514f88e7e47476c41df, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8831026392091495924, guid: f4d8147c954fb514f88e7e47476c41df, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8831026392091495924, guid: f4d8147c954fb514f88e7e47476c41df, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 8831026392091495924, guid: f4d8147c954fb514f88e7e47476c41df, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8831026392091495924, guid: f4d8147c954fb514f88e7e47476c41df, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: f4d8147c954fb514f88e7e47476c41df, type: 3}
---- !u!198 &1856814153 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 8831026392091495927, guid: f4d8147c954fb514f88e7e47476c41df, type: 3}
-  m_PrefabInstance: {fileID: 1856814152}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1978290614
 GameObject:
   m_ObjectHideFlags: 0
@@ -16237,7 +16170,7 @@ PrefabInstance:
     - target: {fileID: 1037557276444728604, guid: 9c608c0017ecd6f40800d79be3e5ffea, type: 3}
       propertyPath: highFallParticles
       value: 
-      objectReference: {fileID: 1856814153}
+      objectReference: {fileID: 11400000, guid: d3fa1d890ecf134499836ca0e11311fd, type: 2}
     - target: {fileID: 7744943742031490674, guid: 9c608c0017ecd6f40800d79be3e5ffea, type: 3}
       propertyPath: _Editor_FeaturesCategory
       value: 1
@@ -16323,6 +16256,5 @@ PrefabInstance:
       propertyPath: m_Name
       value: DialoguePack
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6179350246081230381, guid: 92c44035053efc0489dba55c6b0fa5c3, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92c44035053efc0489dba55c6b0fa5c3, type: 3}
