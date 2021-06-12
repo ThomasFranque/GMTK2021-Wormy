@@ -7,9 +7,6 @@ public class GarryController : MonoBehaviour, IWormGrabber
     [SerializeField] private float accelleration;
     [SerializeField] private float jumpHeight;
     [Header("Some Visual things")]
-    [SerializeField] private StaticParticles highFallParticles;
-    [SerializeField] private float fallForParticles = 3f;
-    [SerializeField, FMODUnity.EventRef] private string grassStrongHit;
 
     private static float gravity = Physics.gravity.y;
     private Vector3 velocity;
@@ -72,17 +69,7 @@ public class GarryController : MonoBehaviour, IWormGrabber
             Debug.Log("Reached Ground");
             groundHit?.Invoke(endHeight);
 
-            if (endHeight >= fallForParticles)
-            {
-                Physics.Raycast(transform.position, Vector3.down,out RaycastHit hit, 1f, ~LayerMask.GetMask("Player"));
-                Vector3 point = hit.point;
-                point.y += 0.2f;
-
-                highFallParticles.PlayPS(point, hit.normal);
-                
-                if (!string.IsNullOrEmpty(grassStrongHit))
-                    FMODUnity.RuntimeManager.PlayOneShot(grassStrongHit, transform.position);
-            }
+            
 
             endHeight = 0;
         }
