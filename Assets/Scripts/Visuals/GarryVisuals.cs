@@ -10,15 +10,26 @@ public class GarryVisuals : MonoBehaviour
     [Header("Worm Struggle Animation")]
     [SerializeField] private GameObject _wormStruggleParent;
     [SerializeField] private ParticleSystem _slurpParticles;
+    [Header("Shooting")]
+    [SerializeField] private ParticleSystem _shootParticles;
 
     private GarryHole _hole;
 
     private Coroutine _wormStruggleCor;
 
-    private void Start()
+    private void Awake()
     {
-        //WormEntered(default);
-        _hole = GameObject.FindObjectOfType<GarryHole>();
+        _hole = transform.root.GetComponent<GarryHole>();
+    }
+
+    private void OnEnable()
+    {
+        _hole.onShoot += ShootEffects;
+    }
+
+    private void OnDisable()
+    {
+        _hole.onShoot -= ShootEffects;
     }
 
     public void WormEntered(Action animationEndCallback = default, WormVisuals wormVisuals = default)
@@ -30,6 +41,19 @@ public class GarryVisuals : MonoBehaviour
         }
 
         _wormStruggleCor = StartCoroutine(CWormStruggle(animationEndCallback));
+    }
+
+    public void ShootEffects(bool shootWorm)
+    {
+        if (_mesh)
+        {
+            LeanTween.scale(_mesh, Vector3.one * 1.4f, 0.8f).setEasePunch();
+        }
+
+        if (shootWorm && _shootParticles != null)
+        {
+            _shootParticles.Play();
+        }
     }
 
     private IEnumerator CWormStruggle(Action callback)

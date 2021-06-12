@@ -60,6 +60,9 @@ public class GarryHole : MonoBehaviour
                 ShootGary();
             }
 
+
+            onShoot?.Invoke(shootWorm);
+            
             shootWorm = false;
             trajectory.SetLine(false);
         }
@@ -108,4 +111,6 @@ public class GarryHole : MonoBehaviour
         Debug.Log("Shoot Worm");
         // controller.Disabled = true;
     }
+
+    public event System.Action<bool> onShoot;
 }
