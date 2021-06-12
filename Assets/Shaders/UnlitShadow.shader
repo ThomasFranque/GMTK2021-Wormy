@@ -4,6 +4,7 @@ Shader "Universal Render Pipeline/Custom/UnlitTextureShadows"
     {
         [MainColor] _BaseColor("BaseColor", Color) = (1,1,1,1)
         [MainTexture] _BaseMap("BaseMap", 2D) = "white" {}
+        _Hue("Hue Shift", Range(-1, 1)) = 0
     }
 
     SubShader
@@ -26,7 +27,7 @@ Shader "Universal Render Pipeline/Custom/UnlitTextureShadows"
 
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
-                      
+
             struct Attributes
             {
                 float4 positionOS   : POSITION;
@@ -46,7 +47,17 @@ Shader "Universal Render Pipeline/Custom/UnlitTextureShadows"
             CBUFFER_START(UnityPerMaterial)
             float4 _BaseMap_ST;
             half4 _BaseColor;
+            float _Hue;
             CBUFFER_END
+
+            
+
+            float3 ApplyHue(float3 col, float hueAdjust)
+            {
+                const float3 k = float3(0.57735, 0.57735, 0.57735);
+                half cosAngle = cos(hueAdjust);
+                return col * cosAngle + cross(k, col) * sin(hueAdjust) + k * dot(k, col) * (1.0 - cosAngle);
+            }
 
             Varyings vert(Attributes IN)
             {
@@ -66,6 +77,7 @@ Shader "Universal Render Pipeline/Custom/UnlitTextureShadows"
                 float4 shadowCoord = TransformWorldToShadowCoord(IN.positionWS);
                 Light mainLight = GetMainLight(shadowCoord);
                 half4 color = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, IN.uv) * _BaseColor;
+                color = half4(ApplyHue(color.rgb, (_Hue * 180) *  3.14159265359 / 180), 1);
                 // color *= mainLight.shadowAttenuation;
                 return color;
             }
