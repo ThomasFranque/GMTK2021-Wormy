@@ -35,6 +35,12 @@ public class GarryHole : MonoBehaviour
         Debug.Log("Gary Hole force: " + HoleShootForce(garryForce));
     }
 
+    public bool Obstructed()
+    {
+        Physics.Raycast(holeTransform.position, holeTransform.forward, out hit, 5f, ~blockMask);
+        return Vector3.Distance(holeTransform.position, hit.point) > 0.3f;
+    }
+
     private void FixedUpdate()
     {
         if (held && released)
@@ -43,7 +49,7 @@ public class GarryHole : MonoBehaviour
             Debug.DrawRay(holeTransform.position, holeTransform.forward * 5f, Color.red, 0.5f);
 
             shootWorm = Vector3.Distance(holeTransform.position, hit.point) > 0.3f;
-            
+
             held = released = false;
             if (shootWorm)
             {

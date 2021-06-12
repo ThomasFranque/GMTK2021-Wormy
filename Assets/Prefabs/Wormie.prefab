@@ -1371,7 +1371,7 @@ Transform:
   m_GameObject: {fileID: 6768931522043507655}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.06, y: 0.06, z: 0.06}
   m_Children:
   - {fileID: 7883332228091096225}
   - {fileID: 8542189878219930936}
@@ -1420,6 +1420,7 @@ MonoBehaviour:
   _tailAnimator: {fileID: 5850592126754195896}
   _lockFace: 0
   _lockHue: 0
+  _lockBlendShapes: 0
 --- !u!1 &6919443724750491664
 GameObject:
   m_ObjectHideFlags: 0
