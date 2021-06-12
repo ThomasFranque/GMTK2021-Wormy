@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0.99999905, b: 0.99999905, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5715,10 +5715,11 @@ GameObject:
   m_Component:
   - component: {fileID: 601225598}
   - component: {fileID: 601225597}
-  - component: {fileID: 601225596}
   - component: {fileID: 601225599}
   - component: {fileID: 601225600}
   - component: {fileID: 601225601}
+  - component: {fileID: 601225596}
+  - component: {fileID: 601225602}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -5726,14 +5727,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &601225596
-AudioListener:
+--- !u!114 &601225596
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 601225595}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
+  ListenerNumber: -1
 --- !u!20 &601225597
 Camera:
   m_ObjectHideFlags: 0
@@ -5784,7 +5791,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 601225595}
-  m_LocalRotation: {x: 0.28828228, y: 0.1299135, z: -0.039511554, w: 0.9478685}
+  m_LocalRotation: {x: 0.28829625, y: 0.12957765, z: -0.03940941, w: 0.9479145}
   m_LocalPosition: {x: -1, y: 3.26, z: -3.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -5869,6 +5876,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 156afca5319191d408a0a2758317089a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &601225602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 601225595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: -1
+  OverrideMaxDistance: -1
 --- !u!1 &694036458
 GameObject:
   m_ObjectHideFlags: 0
@@ -16588,7 +16618,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1330996456}
-  m_LocalRotation: {x: 0.28828228, y: 0.1299135, z: -0.039511554, w: 0.9478685}
+  m_LocalRotation: {x: 0.28829625, y: 0.12957765, z: -0.03940941, w: 0.9479145}
   m_LocalPosition: {x: -1, y: 3.26, z: -3.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
