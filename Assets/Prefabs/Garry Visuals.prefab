@@ -686,7 +686,7 @@ MonoBehaviour:
   Prewarm: 0
   Slithery: 0.614
   Curling: 0.182
-  Springiness: 1
+  Springiness: 0
   MaxStretching: 0.375
   AngleLimit: 181
   AngleLimitAxis: {x: 0, y: 0, z: 0}
@@ -717,7 +717,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8450681395607486671}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 61574e354ba34a141ae2cc1228f5eda3, type: 3}
   m_Name: 
@@ -1305,7 +1305,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   DeflectOnlyCollisions: 1
-  _Editor_Category: 1
+  _Editor_Category: 0
   _Editor_FeaturesCategory: 0
   DrawGizmos: 1
   StartBone: {fileID: 3372653461484110969}
@@ -1321,7 +1321,7 @@ MonoBehaviour:
   InterpolateRate: 0
   Prewarm: 0
   Slithery: 1.2
-  Curling: 0.545
+  Curling: 1
   Springiness: 0
   MaxStretching: 0
   AngleLimit: 181
@@ -1336,7 +1336,7 @@ MonoBehaviour:
   Sustain: 0
   RotationRelevancy: 1
   SmoothingStyle: 1
-  DeltaType: 4
+  DeltaType: 1
   UpdateAsLast: 1
   DetectZeroKeyframes: 1
   StartAfterTPose: 1
