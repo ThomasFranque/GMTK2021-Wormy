@@ -24,6 +24,7 @@ public class GarryController : MonoBehaviour, IWormGrabber
     {
         rb = GetComponent<Rigidbody>();
         cameraTransform = Camera.main.transform;
+        Grounded = true;
     }
 
     // Start is called before the first frame update
@@ -48,6 +49,9 @@ public class GarryController : MonoBehaviour, IWormGrabber
         }
 
         Grounded = false;
+
+        if (rb.velocity.magnitude < 0.01f)
+            Grounded = true;
     }
 
     // Update is called once per frame
