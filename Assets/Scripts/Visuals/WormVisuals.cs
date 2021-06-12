@@ -10,6 +10,7 @@ public class WormVisuals : MonoBehaviour
     [Space]
     [SerializeField] private bool _lockFace;
     [SerializeField] private bool _lockHue;
+    [SerializeField] private bool _lockBlendShapes;
 
     private void Awake()
     {
@@ -27,6 +28,8 @@ public class WormVisuals : MonoBehaviour
             RandomizeHue();
         if (!_lockFace)
             RandomizeFace();
+        if (!_lockBlendShapes)
+            RandomizeShapeKeys();
     }
 
     private void RandomizeHue()
@@ -38,6 +41,16 @@ public class WormVisuals : MonoBehaviour
     private void RandomizeFace()
     {
         _targetRenderer.materials[1].SetTexture("_MainTex", _faces[Random.Range(0, _faces.Length)]);
+    }
+
+    private void RandomizeShapeKeys()
+    {
+        SkinnedMeshRenderer skinned = _targetRenderer as SkinnedMeshRenderer;
+        for (int i = 0; i < skinned.sharedMesh.blendShapeCount; i++)
+        {
+            skinned.SetBlendShapeWeight(i, Random.value * 100);
+            Debug.Log(skinned.GetBlendShapeWeight(i));
+        }
     }
 
     // Animator events
@@ -58,7 +71,7 @@ public class WormVisuals : MonoBehaviour
     private Coroutine TailAmmountAnimatorCor;
     private IEnumerator CAnimateTailAnimatorAmount(float to, float mod = 1)
     {
-        while(Mathf.Abs(to - _tailAnimator.TailAnimatorAmount) >= 0.02f)
+        while (Mathf.Abs(to - _tailAnimator.TailAnimatorAmount) >= 0.02f)
         {
             _tailAnimator.TailAnimatorAmount = Mathf.Lerp(_tailAnimator.TailAnimatorAmount, to, 0.7f * Time.deltaTime * mod);
             yield return default;
