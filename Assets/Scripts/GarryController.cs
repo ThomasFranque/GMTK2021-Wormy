@@ -6,6 +6,9 @@ public class GarryController : MonoBehaviour, IWormGrabber
 {
     [SerializeField] private float accelleration;
     [SerializeField] private float jumpHeight;
+    [Header("Some Visual things")]
+    [SerializeField] private ParticleSystem highFallParticles;
+    [SerializeField] private float fallForParticles = 3f;
 
     private static float gravity = Physics.gravity.y;
     private Vector3 velocity;
@@ -19,6 +22,9 @@ public class GarryController : MonoBehaviour, IWormGrabber
     private Transform cameraTransform;
     private bool jump;
     public bool Jumping {get; private set;}
+    private float endHeight;
+    private float initialHeight;
+    private bool lastFrameGrounded;
 
     private void Awake()
     {
@@ -47,11 +53,29 @@ public class GarryController : MonoBehaviour, IWormGrabber
                 JumpGarryJump();
             }
         }
+        
+        if (!Grounded && lastFrameGrounded)
+        {
+            // initial height
+            initialHeight = transform.position.y;
+        }
+        else if (Grounded && !lastFrameGrounded)
+        {
+            endHeight = transform.position.y;
+            Debug.Log("Reached Ground");
+            if (Mathf.Abs(endHeight - initialHeight) >= fallForParticles)
+            {
+                Physics.Raycast(transform.position, Vector3.down,out RaycastHit hit, 1f, ~LayerMask.GetMask("Player"));
+                highFallParticles.transform.forward = hit.normal;
+                highFallParticles.Play();
+            }
+        }
 
-        Grounded = false;
 
         if (rb.velocity.magnitude < 0.01f)
             Grounded = true;
+
+        lastFrameGrounded = Grounded;
     }
 
     // Update is called once per frame
@@ -71,8 +95,6 @@ public class GarryController : MonoBehaviour, IWormGrabber
         {
             Jumping = false;
         }
-
-        Debug.Log($"{name}: Jump --- {jump}, Grounded: {Grounded}, Jumping: {Jumping}");
     }
 
     void UpdateMovement()
@@ -112,6 +134,10 @@ public class GarryController : MonoBehaviour, IWormGrabber
     private void OnCollisionStay(Collision other) 
     {
         Grounded = true;
+    }
+
+    private void OnCollisionExit(Collision other) {
+        Grounded = false;
     }
 
     public void PickWorm()
