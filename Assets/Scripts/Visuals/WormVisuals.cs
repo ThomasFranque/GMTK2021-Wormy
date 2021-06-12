@@ -49,7 +49,6 @@ public class WormVisuals : MonoBehaviour
         for (int i = 0; i < skinned.sharedMesh.blendShapeCount; i++)
         {
             skinned.SetBlendShapeWeight(i, Random.value * 100);
-            Debug.Log(skinned.GetBlendShapeWeight(i));
         }
     }
 
