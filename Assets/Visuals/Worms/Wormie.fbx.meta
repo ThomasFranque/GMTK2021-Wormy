@@ -117,10 +117,17 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.062499993
+      - time: 0
         functionName: ActivateTailAnimator
         data: ActivateTailAnimator
         objectReferenceParameter: {fileID: 11500000, guid: 0a55bbf63f482604aa7608461fbaadef, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.21713148
+        functionName: DeactivateIK
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 28d4972ea9e64464f8c1623e7e3a2fa0, type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
