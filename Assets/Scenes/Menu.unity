@@ -123,34 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &5390349 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1284723871979584049, guid: ff875dcb2b560fc4786c1dad2f444efd, type: 3}
-  m_PrefabInstance: {fileID: 3901520848347931017}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &5390350
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5390349}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: 
-  Event: event:/SFX/UI/Confirm
-  PlayEvent: 0
-  StopEvent: 2
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
 --- !u!1001 &29067321
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1188,7 +1160,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1037557276444728602, guid: 9c608c0017ecd6f40800d79be3e5ffea, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1037557276444728602, guid: 9c608c0017ecd6f40800d79be3e5ffea, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1234,6 +1206,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Garry
       objectReference: {fileID: 0}
+    - target: {fileID: 1037557276444728603, guid: 9c608c0017ecd6f40800d79be3e5ffea, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1037557276444728604, guid: 9c608c0017ecd6f40800d79be3e5ffea, type: 3}
       propertyPath: accelleration
       value: 5
@@ -1241,6 +1217,10 @@ PrefabInstance:
     - target: {fileID: 1037557276444728607, guid: 9c608c0017ecd6f40800d79be3e5ffea, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4668050604143725966, guid: 9c608c0017ecd6f40800d79be3e5ffea, type: 3}
+      propertyPath: Event
+      value: event:/SFX/Worm and Gary/Grass Movement
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c608c0017ecd6f40800d79be3e5ffea, type: 3}
@@ -1254,8 +1234,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1007191861}
   - component: {fileID: 1007191860}
-  - component: {fileID: 1007191859}
   - component: {fileID: 1007191862}
+  - component: {fileID: 1007191859}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1263,14 +1243,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1007191859
-AudioListener:
+--- !u!114 &1007191859
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1007191858}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
+  ListenerNumber: -1
 --- !u!20 &1007191860
 Camera:
   m_ObjectHideFlags: 0
@@ -2621,7 +2607,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &2010973916
 GameObject:
@@ -3264,46 +3250,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Start
       objectReference: {fileID: 0}
-    - target: {fileID: 1581049544732235876, guid: ff875dcb2b560fc4786c1dad2f444efd, type: 3}
-      propertyPath: m_text
-      value: Roll Out
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581049544732235876, guid: ff875dcb2b560fc4786c1dad2f444efd, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 2b696cf24ad02c84b8027afb80cd3073, type: 2}
-    - target: {fileID: 1581049544732235876, guid: ff875dcb2b560fc4786c1dad2f444efd, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 5583890851639173248, guid: 2b696cf24ad02c84b8027afb80cd3073, type: 2}
-    - target: {fileID: 3175463986791047510, guid: ff875dcb2b560fc4786c1dad2f444efd, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 5583890851639173248, guid: 2b696cf24ad02c84b8027afb80cd3073, type: 2}
-    - target: {fileID: 3375420320555880391, guid: ff875dcb2b560fc4786c1dad2f444efd, type: 3}
-      propertyPath: Event
-      value: event:/SFX/UI/Interact and click
-      objectReference: {fileID: 0}
-    - target: {fileID: 3375420320555880391, guid: ff875dcb2b560fc4786c1dad2f444efd, type: 3}
-      propertyPath: StopEvent
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3375420320555880391, guid: ff875dcb2b560fc4786c1dad2f444efd, type: 3}
-      propertyPath: OverrideMaxDistance
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 3375420320555880391, guid: ff875dcb2b560fc4786c1dad2f444efd, type: 3}
-      propertyPath: OverrideMinDistance
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3400351417719014898, guid: ff875dcb2b560fc4786c1dad2f444efd, type: 3}
-      propertyPath: m_Size.x
-      value: 4.35
-      objectReference: {fileID: 0}
-    - target: {fileID: 3400351417719014898, guid: ff875dcb2b560fc4786c1dad2f444efd, type: 3}
-      propertyPath: m_Size.z
-      value: 1.37
-      objectReference: {fileID: 0}
     - target: {fileID: 4889119416142575660, guid: ff875dcb2b560fc4786c1dad2f444efd, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -3348,60 +3294,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7139791633762287748, guid: ff875dcb2b560fc4786c1dad2f444efd, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8942085250726736547, guid: ff875dcb2b560fc4786c1dad2f444efd, type: 3}
       propertyPath: _garry
       value: 
       objectReference: {fileID: 801194148}
     - target: {fileID: 8942085250726736547, guid: ff875dcb2b560fc4786c1dad2f444efd, type: 3}
-      propertyPath: _enteredSound
-      value: 
-      objectReference: {fileID: 5390350}
-    - target: {fileID: 8942085250726736547, guid: ff875dcb2b560fc4786c1dad2f444efd, type: 3}
-      propertyPath: _pressedSound
-      value: 
-      objectReference: {fileID: 3901520848347931018}
-    - target: {fileID: 8942085250726736547, guid: ff875dcb2b560fc4786c1dad2f444efd, type: 3}
-      propertyPath: _onJumpOnButton.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8942085250726736547, guid: ff875dcb2b560fc4786c1dad2f444efd, type: 3}
-      propertyPath: _onJumpOnButton.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8942085250726736547, guid: ff875dcb2b560fc4786c1dad2f444efd, type: 3}
       propertyPath: _onJumpOnButton.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1419164525}
-    - target: {fileID: 8942085250726736547, guid: ff875dcb2b560fc4786c1dad2f444efd, type: 3}
-      propertyPath: _onJumpOnButton.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8942085250726736547, guid: ff875dcb2b560fc4786c1dad2f444efd, type: 3}
-      propertyPath: _onJumpOnButton.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadGame
-      objectReference: {fileID: 0}
-    - target: {fileID: 8942085250726736547, guid: ff875dcb2b560fc4786c1dad2f444efd, type: 3}
-      propertyPath: _onJumpOnButton.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: MenuFunctions, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 8942085250726736547, guid: ff875dcb2b560fc4786c1dad2f444efd, type: 3}
-      propertyPath: _onJumpOnButton.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff875dcb2b560fc4786c1dad2f444efd, type: 3}
---- !u!114 &3901520848347931018 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3375420320555880391, guid: ff875dcb2b560fc4786c1dad2f444efd, type: 3}
-  m_PrefabInstance: {fileID: 3901520848347931017}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5390349}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
