@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMOD;
 
 public class GarryVisuals : MonoBehaviour
 {
@@ -10,26 +11,39 @@ public class GarryVisuals : MonoBehaviour
     [Header("Worm Struggle Animation")]
     [SerializeField] private GameObject _wormStruggleParent;
     [SerializeField] private ParticleSystem _slurpParticles;
+    [Header("Garry Movement")]
+    [SerializeField] private StaticParticles _highFallParticles;
+    [SerializeField] private float fallHeight = 3f;
+
     [Header("Shooting")]
     [SerializeField] private ParticleSystem _shootParticles;
+    [Header("Audio")]
+    [SerializeField] private FMODUnity.StudioEventEmitter _grassHit;
+    [SerializeField] private FMODUnity.StudioEventEmitter _grassWalk;
+    [SerializeField] private FMODUnity.StudioEventEmitter _shootPop;
 
     private GarryHole _hole;
+    private GarryController _garryControl;
 
     private Coroutine _wormStruggleCor;
 
     private void Awake()
     {
         _hole = transform.root.GetComponent<GarryHole>();
+        _garryControl = transform.root.GetComponent<GarryController>();
     }
 
     private void OnEnable()
     {
         _hole.onShoot += ShootEffects;
+        _garryControl.groundHit += GroundHit;
+
     }
 
     private void OnDisable()
     {
         _hole.onShoot -= ShootEffects;
+        _garryControl.groundHit -= GroundHit;
     }
 
     public void WormEntered(Action animationEndCallback = default, WormVisuals wormVisuals = default)
@@ -53,6 +67,20 @@ public class GarryVisuals : MonoBehaviour
         if (shootWorm && _shootParticles != null)
         {
             _shootParticles.Play();
+            _shootPop?.Play();
+        }
+    }
+
+    public void GroundHit(float distance)
+    {
+        if (distance >= fallHeight)
+        {
+            Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 1f, ~LayerMask.GetMask("Player"));
+            Vector3 point = hit.point;
+            point.y += 0.2f;
+
+            _highFallParticles.PlayPS(point, hit.normal);
+            _grassHit?.Play();
         }
     }
 

@@ -115,6 +115,7 @@ public class DialogueRenderer : MonoBehaviour
     private void SetDialogue(Transform point)
     {
         activeDialogue = point;
+
         if (point == null)
         {
             dialogueCamera.gameObject.SetActive(false);
@@ -126,6 +127,8 @@ public class DialogueRenderer : MonoBehaviour
             return;
         }
 
+        dialogueObject.transform.GetChild(0).localScale = Vector3.one;
+        dialogueObject.alpha = 0;
         GarryController.Disabled = true;
 
         dialogueCamera.LookAt = point;
@@ -133,6 +136,8 @@ public class DialogueRenderer : MonoBehaviour
 
         dialogueCamera.gameObject.SetActive(true);
         dialogueObject.gameObject.SetActive(true);
+        NameTag tag = dialogueObject.GetComponentInChildren<NameTag>();
+        tag.SetTag(currentlyShowing);
         SetPosition(dialogueObject.transform, point.position);
         NextLine();
         dialogueQueued = true;

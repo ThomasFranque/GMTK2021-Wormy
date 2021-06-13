@@ -2,19 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GarryController : MonoBehaviour, IWormGrabber
+public class GarryController : MonoBehaviour
 {
     [SerializeField] private float accelleration;
     [SerializeField] private float jumpHeight;
     [Header("Some Visual things")]
-    [SerializeField] private StaticParticles highFallParticles;
-    [SerializeField] private float fallForParticles = 3f;
-    [SerializeField, FMODUnity.EventRef] private string grassStrongHit;
 
     private static float gravity = Physics.gravity.y;
-    private Vector3 velocity;
-
-    public Vector3 Velocity { get; set; }
+    public Vector3 Velocity => rb.velocity;
     public static bool Disabled { get; set; }
     public bool Grounded {get; set;}
     public Vector3 InputDirection { get; private set; }
@@ -23,6 +18,8 @@ public class GarryController : MonoBehaviour, IWormGrabber
     private Transform cameraTransform;
     private bool jump;
     public bool Jumping {get; private set;}
+    public Rigidbody Rb => rb;
+
     private float endHeight;
     private bool lastFrameGrounded;
     private RaycastHit hit;
@@ -72,17 +69,7 @@ public class GarryController : MonoBehaviour, IWormGrabber
             Debug.Log("Reached Ground");
             groundHit?.Invoke(endHeight);
 
-            if (endHeight >= fallForParticles)
-            {
-                Physics.Raycast(transform.position, Vector3.down,out RaycastHit hit, 1f, ~LayerMask.GetMask("Player"));
-                Vector3 point = hit.point;
-                point.y += 0.2f;
-
-                highFallParticles.PlayPS(point, hit.normal);
-                
-                if (!string.IsNullOrEmpty(grassStrongHit))
-                    FMODUnity.RuntimeManager.PlayOneShot(grassStrongHit, transform.position);
-            }
+            
 
             endHeight = 0;
         }
@@ -156,10 +143,6 @@ public class GarryController : MonoBehaviour, IWormGrabber
         Grounded = false;
     }
 
-    public void PickWorm()
-    {
-        Disabled = false;
-    }
 
     public event System.Action<float> groundHit;
 }

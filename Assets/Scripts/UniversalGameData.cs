@@ -26,4 +26,5 @@ public static class UniversalGameData
         }
     }
     public static float TotalLeafs => Leafs / TOTAL_GAME_LEAFS;
+    public static Color WalkingColor {get; set;}
 }
