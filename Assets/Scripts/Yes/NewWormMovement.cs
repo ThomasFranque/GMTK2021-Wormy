@@ -7,13 +7,13 @@ public class NewWormMovement : MonoBehaviour
     [SerializeField] private float _playerSpeed = 2.0f;
     [SerializeField] private float _jumpHeight = 1.0f;
     [SerializeField] private float _gravityValue = -9.81f;
-    [SerializeField] private float _rotationBoost = 100;
 
     private CharacterController _controller;
     private Vector3 _playerVelocity;
     private Rigidbody _rb;
     private Transform _cam;
     private WormRagdoll _ragdoll;
+
     public bool isRagDolling { get; private set; }
     private Vector3 Forward => new Vector3(_cam.forward.x, 0, _cam.forward.z).normalized;
     private Vector3 Right => Vector3.Cross(Vector3.up, Forward).normalized;
