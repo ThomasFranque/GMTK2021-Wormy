@@ -21,6 +21,7 @@ public class GarryVisuals : MonoBehaviour
     [SerializeField] private FMODUnity.StudioEventEmitter _grassHit;
     [SerializeField] private FMODUnity.StudioEventEmitter _grassWalk;
     [SerializeField] private FMODUnity.StudioEventEmitter _shootPop;
+    [SerializeField] private FMODUnity.StudioEventEmitter _shootGarrySound;
 
     private GarryHole _hole;
     private GarryController _garryControl;
@@ -69,6 +70,8 @@ public class GarryVisuals : MonoBehaviour
             _shootParticles.Play();
             _shootPop?.Play();
         }
+        
+        _shootGarrySound?.Play();
     }
 
     public void GroundHit(float distance)

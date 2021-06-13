@@ -7,7 +7,7 @@ public class GarryController : MonoBehaviour
     [SerializeField] private float accelleration;
     [SerializeField] private float jumpHeight;
     [Header("Some Visual things")]
-
+    [SerializeField] private FMODUnity.StudioEventEmitter jumpSound;
     private static float gravity = Physics.gravity.y;
     public Vector3 Velocity => rb.velocity;
     public static bool Disabled { get; set; }
@@ -110,6 +110,7 @@ public class GarryController : MonoBehaviour
     {
         Jumping = true;
         rb.velocity = new Vector3(rb.velocity.x, JumpSpeed(jumpHeight), rb.velocity.z);
+        jumpSound?.Play();
     }
 
     private Vector3 RelativeVectorTo(Vector3 original, Transform relative)
