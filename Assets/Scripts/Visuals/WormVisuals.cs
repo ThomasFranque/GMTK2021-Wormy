@@ -88,6 +88,19 @@ public class WormVisuals : MonoBehaviour
             StopCoroutine(TailAmmountAnimatorCor);
         TailAmmountAnimatorCor = StartCoroutine(CAnimateTailAnimatorAmount(0, 1.9f));
     }
+    
+    public void ActivateTailAnimator(float to, float speedModifer)
+    {
+        if (TailAmmountAnimatorCor != default)
+            StopCoroutine(TailAmmountAnimatorCor);
+        TailAmmountAnimatorCor = StartCoroutine(CAnimateTailAnimatorAmount(to, speedModifer));
+    }
+    public void DeActivateTailAnimator(float speedModifer)
+    {
+        if (TailAmmountAnimatorCor != default)
+            StopCoroutine(TailAmmountAnimatorCor);
+        TailAmmountAnimatorCor = StartCoroutine(CAnimateTailAnimatorAmount(0, speedModifer));
+    }
     //
 
     private Coroutine TailAmmountAnimatorCor;
