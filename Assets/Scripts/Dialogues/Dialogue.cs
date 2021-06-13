@@ -13,6 +13,19 @@ public class Dialogue : MonoBehaviour, IInteractable
     public bool Canceled { get; set; }
 
     private DialogueData lastDialogue;
+    bool hasDialogue;
+    private void Awake() 
+    {
+        foreach(var d in firstTimeDialogues)
+        {
+            hasDialogue |= d;
+        }
+
+        foreach(var d in randomDialogues)
+        {
+            hasDialogue |= d;
+        }
+    }
     public void InRange()
     {
         DialogueRenderer.Indicator(popUpPosition);

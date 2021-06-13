@@ -1,6 +1,10 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Visuals/Props/Leaf.meta
 guid: 77c355da98a215d48a938004bbe406cc
 folderAsset: yes
+=======
+guid: 38f249fa270ea374eafd0ae8dbd8e7e3
+>>>>>>> origin/mainMenu:Assets/Visuals/Fonts/Nunito-Bold SDF.asset.orig.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
