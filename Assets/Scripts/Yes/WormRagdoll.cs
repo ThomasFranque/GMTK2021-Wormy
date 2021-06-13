@@ -1,25 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class WormRagdoll : MonoBehaviour
 {
-    private Rigidbody _rb;
-    private Animator _anim;
-    public bool toggleRagdoll;
-    public bool untoggleRagdoll;
-
     [SerializeField] private Transform _charStart;
-   
+    private Rigidbody _rb;
     private List<Transform> _reset;
     private List<(Vector3, Quaternion)> _resetValues;
     private Rigidbody[] _rbs;
-    private WormMovement _movement;
+    private NewWormMovement _movement;
 
     // Start is called before the first frame update
     void Awake()
     {
-        _anim = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody>();
         _rbs = GetComponentsInChildren<Rigidbody>();
 
@@ -42,49 +37,22 @@ public class WormRagdoll : MonoBehaviour
             }
         }
 
-        _movement = GetComponent<WormMovement>();
+        _movement = GetComponent<NewWormMovement>();
         DisableRagdoll();
-    }
-
-    private void Update()
-    {
-        if (toggleRagdoll)
-        {
-            EnableRagdoll();
-            toggleRagdoll = false;
-        }
-        if (untoggleRagdoll)
-        {
-            DisableRagdoll();
-            untoggleRagdoll = false;
-        }
     }
     public void EnableRagdoll()
     {
-        _rb.isKinematic = false;
-
-        for (int i = 0; i < _rbs.Length; i++)
-        {
-            _rbs[i].isKinematic = false;
-        }
-
-        _anim.enabled = false;
+        SwitchRigidBodyStates(false, true);
     }
 
     private IEnumerator LerpTransforms()
     {
         _movement.enabled = false;
-        _rb.useGravity = false;
-        _rb.isKinematic = true;
 
-        for (int i = 0; i < _rbs.Length; i++)
-        {
-            _rbs[i].useGravity = false;
-            _rbs[i].isKinematic = true;
-        }
+        SwitchRigidBodyStates(true, false);
 
         float time = 0;
-        Vector3 target = transform.position + Vector3.up;
+        Vector3 target = transform.position + Vector3.up * 0.01f;
 
         while(time < 2)
         {
@@ -99,18 +67,28 @@ public class WormRagdoll : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
-        _anim.enabled = true;
-        _rb.useGravity = true;
-        
+        SwitchRigidBodyStates(true, true);
+
+        _movement.enabled = true;
+        onRagDollEnd?.Invoke();
+    }
+
+    private void SwitchRigidBodyStates(bool state, bool gravityState)
+    {
+        _rb.useGravity = gravityState;
+        _rb.isKinematic = state;
+
         for (int i = 0; i < _rbs.Length; i++)
         {
-            _rbs[i].useGravity = true;
-            _rbs[i].isKinematic = true;
+            _rbs[i].useGravity = gravityState;
+            _rbs[i].isKinematic = state;
         }
-        _movement.enabled = true;
     }
     public void DisableRagdoll()
     {
         StartCoroutine(LerpTransforms());
     }
+
+    public static Action onRagDollEnd;
+    public static Action onRagDollStart;
 }
