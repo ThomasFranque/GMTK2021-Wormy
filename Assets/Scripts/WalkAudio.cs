@@ -26,7 +26,6 @@ public class WalkAudio : MonoBehaviour
         {
             volume = Mathf.Clamp(controller.Velocity.magnitude * 0.6f, 0, 1);
             walkEmitter.SetParameter("Volume", volume);
-            Debug.Log(volume);
             walkEmitter.Play();
         }
     }
