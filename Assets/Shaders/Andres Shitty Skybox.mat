@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Andres Shitty Skybox
+  m_Shader: {fileID: -6465566751694194690, guid: 4e7bb8db793aca34e895baaccd7bc49d, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 0
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - Vector1_21532678: 0.1
+    - Vector1_4B72FB2B: 1
+    - Vector1_56EE4165: 10
+    - Vector1_A9B5F19E: 4.23
+    - Vector1_B3576F45: 1.72
+    - Vector1_C579443B: 24.7
+    - Vector1_C8C851F0: 0.17
+    - Vector1_E31BEEB5: 1
+    - _time: 0
+    m_Colors:
+    - Color_3EC2DAAF: {r: 0.42352936, g: 0.7450981, b: 0.7921569, a: 0}
+    - Color_46A542D2: {r: 1, g: 0.75135064, b: 0, a: 0}
+    - Color_8BF1A9D: {r: 0.09140638, g: 0.029681379, b: 0.21698102, a: 0}
+    - Color_DB70C38D: {r: 1, g: 0.23032938, b: 0, a: 0}
+    - Color_ED5AED0F: {r: 0.0652012, g: 0.006941974, b: 0.11320745, a: 0}
+    - _direction: {r: -0.3213938, g: -0.76604444, b: 0.5566705, a: 0}
+  m_BuildTextureStacks: []
