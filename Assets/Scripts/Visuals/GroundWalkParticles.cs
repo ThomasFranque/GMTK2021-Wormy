@@ -23,41 +23,42 @@ public class GroundWalkParticles : MonoBehaviour
     private void Update()
     {
         instance.gameObject.SetActive(controller.Grounded);
-
         if (Physics.Raycast(transform.position, Vector3.down, out hit, 20f, ~LayerMask.GetMask("Player")))
         {
-            Renderer renderer = hit.collider.GetComponent<Renderer>();
-            if (renderer)
-            {
-                Texture2D tex = renderer.material.mainTexture as Texture2D;
-                if (renderer && tex)
-                {
-                    Vector2 coord = hit.textureCoord;
+            // Renderer renderer = hit.collider.GetComponent<Renderer>();
+            // if (renderer)
+            // {
+            //     Texture2D tex = renderer.material.mainTexture as Texture2D;
+            //     if (renderer && tex)
+            //     {
+            //         Vector2 coord = hit.textureCoord;
 
-                    coord.x *= tex.width;
-                    coord.y *= tex.height;
+            //         coord.x *= tex.width;
+            //         coord.y *= tex.height;
 
-                    Vector2 tiling = renderer.material.mainTextureScale;
-                    color = tex.GetPixel(Mathf.FloorToInt(coord.x * tiling.x), Mathf.FloorToInt(coord.y * tiling.y));
-                    UniversalGameData.WalkingColor = color;
-                }
-                else if (renderer)
-                {
-                    color = renderer.material.color;
-                    UniversalGameData.WalkingColor = color;
-                    mainModule.startColor = color;
-                }
+            //         Vector2 tiling = renderer.material.mainTextureScale;
+            //         color = tex.GetPixel(Mathf.FloorToInt(coord.x * tiling.x), Mathf.FloorToInt(coord.y * tiling.y));
+            //         UniversalGameData.WalkingColor = color;
+            //     }
+            //     else if (renderer)
+            //     {
+            //         color = renderer.material.color;
+            //         UniversalGameData.WalkingColor = color;
+            //         mainModule.startColor = color;
+            //     }
 
-                // Brighten it up a bit
-                float h;
-                float s;
-                float v;
-                Color.RGBToHSV(color, out h, out s, out v);
-                v = Mathf.Clamp(v + 0.25f, 0, 1);
-                color = Color.HSVToRGB(h, s, v);
+            //     // Brighten it up a bit
+            //     float h;
+            //     float s;
+            //     float v;
+            //     Color.RGBToHSV(color, out h, out s, out v);
+            //     v = Mathf.Clamp(v + 0.25f, 0, 1);
+            //     color = Color.HSVToRGB(h, s, v);
+            //     particleSystemRenderer.material.SetColor("_BaseColor", color);
+            // }
 
-                particleSystemRenderer.material.SetColor("_BaseColor", color);
-            }
+            mainModule.startColor = UniversalGameData.WalkingColor;
+            instance.transform.forward = hit.normal;
             instance.transform.position = hit.point;
         }
     }
