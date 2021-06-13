@@ -12,13 +12,13 @@ public class PickUpWorm : MonoBehaviour
         grabber = GetComponent<IWormGrabber>();
     }
 
-    private void OnCollisionEnter(Collision other) 
+    private void OnTriggerEnter(Collider other) 
     {
         // need the controller for this
-
-        if (other.gameObject.CompareTag("Worm"))
+        if (other.transform.root.CompareTag("Worm"))
         {
-            grabber?.PickWorm(other.gameObject);
+            grabber?.PickWorm(other.transform.root.gameObject);
+            Debug.Log("Worm pick up");
         }
     }
 }

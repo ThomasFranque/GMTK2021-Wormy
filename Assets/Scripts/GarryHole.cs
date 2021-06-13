@@ -9,6 +9,7 @@ public class GarryHole : MonoBehaviour, IWormGrabber
     [SerializeField] private bool debug;
     [SerializeField] private LayerMask blockMask;
     [SerializeField] private GameObject wormPrefab;
+    [SerializeField] private Collider trigger;
 
     private GarryController controller;
     private Rigidbody rb;
@@ -35,6 +36,20 @@ public class GarryHole : MonoBehaviour, IWormGrabber
         }
 
         Debug.Log("Gary Hole force: " + HoleShootForce(garryForce));
+    }
+
+    private void Start()
+    {
+        if (worm == null)
+        {
+            worm = Instantiate(wormPrefab, Vector3.zero, Quaternion.identity);
+        }
+
+        worm.layer = LayerMask.NameToLayer("Player");
+        worm.SetActive(false);
+        
+        Pole.current.AddSource(worm.transform);
+        Pole.current.constraint.constraintActive = true;
     }
 
     public bool Obstructed()
@@ -99,7 +114,6 @@ public class GarryHole : MonoBehaviour, IWormGrabber
 
     private void DrawTrajectory()
     {
-        Debug.Log("Drawing Trajectory");
         trajectory?.PlotTrajectory(holeTransform.position, (holeTransform.forward * HoleShootForce(wormForce)));
     }
 
@@ -113,17 +127,20 @@ public class GarryHole : MonoBehaviour, IWormGrabber
     {
         Debug.Log("Shoot Worm");
         GarryController.Disabled = true;
-        if (worm == null)
-        {
-            worm = Instantiate(wormPrefab, Vector3.zero, Quaternion.identity);
-        }
 
+        worm.SetActive(true);
         worm.transform.position = holeTransform.position;
         worm.transform.forward = holeTransform.forward;
-        FollowTarget.Current.followTarget = worm.transform.Find("Pole");
+        trigger.enabled = false;
+        FollowTarget.Current.followTarget = Pole.current.transform;
+        worm.GetComponent<NewWormMovement>().
+            ThrowWorm(holeTransform.forward * HoleShootForce(wormForce * -Physics.gravity.y));
 
-        worm.GetComponent<WormRagdoll>().EnableRagdoll();
-        worm.GetComponent<Rigidbody>().AddForce(holeTransform.forward * HoleShootForce(wormForce));
+        LeanTween.delayedCall(1f, () => 
+        {
+            worm.layer = LayerMask.NameToLayer("Ignore");
+            trigger.enabled = true;
+        });
     }
 
     public void PickWorm(GameObject pickedWorm)
@@ -133,11 +150,22 @@ public class GarryHole : MonoBehaviour, IWormGrabber
             worm = pickedWorm;
         }
         if (pickedWorm != worm) return;
-
-        worm.gameObject.SetActive(false);
+        
+        worm.layer = LayerMask.NameToLayer("Player");
+        worm.SetActive(false);
         // Change camera
         FollowTarget.Current.followTarget = transform.GetChild(0);
         GetComponentInChildren<GarryVisuals>().WormEntered(() => GarryController.Disabled = false);
+    }
+
+    private void OnTriggerEnter(Collider other) 
+    {
+        Debug.Log("Something entered");
+        if (other.transform.root.gameObject == worm)
+        {
+            Debug.Log(other.name);
+            PickWorm(other.transform.root.gameObject);
+        }    
     }
 
     public event System.Action<bool> onShoot;

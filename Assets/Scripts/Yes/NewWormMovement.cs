@@ -106,6 +106,28 @@ public class NewWormMovement : MonoBehaviour
         isRagDolling = true;
     }
 
+    public void ThrowWorm(Vector3 velocity, bool force = false)
+    {
+        _controller.enabled = false;
+        _ragdoll.EnableRagdoll();
+
+
+        Vector3 currentForce = _rb.velocity;
+        currentForce.y = 0;
+
+        if (force)
+        {
+            _rb.AddForce(velocity, ForceMode.Force);
+        }
+        else
+        {
+            _rb.velocity = velocity;
+        }    
+
+        _jump = false;
+        isRagDolling = true;
+    }
+
     private IEnumerator Switch()
     {
         yield return new WaitForSeconds(_stayRagDollTime);
