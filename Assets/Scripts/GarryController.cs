@@ -9,9 +9,7 @@ public class GarryController : MonoBehaviour
     [Header("Some Visual things")]
 
     private static float gravity = Physics.gravity.y;
-    private Vector3 velocity;
-
-    public Vector3 Velocity { get; set; }
+    public Vector3 Velocity => rb.velocity;
     public static bool Disabled { get; set; }
     public bool Grounded {get; set;}
     public Vector3 InputDirection { get; private set; }
