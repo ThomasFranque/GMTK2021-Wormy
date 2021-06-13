@@ -15,6 +15,11 @@ public class WormVisuals : MonoBehaviour
     [SerializeField, Tooltip("X: Min, Y: Max")] private Vector2 _scaleRange = new Vector2(0.5f, 1.5f);
     [SerializeField, Tooltip("X: Min, Y: Max")] private Vector2 _hueRange = new Vector2(-0.8f, 0.1f);
 
+    [Header("Visual Overrides")]
+    [SerializeField] private Texture2D _faceOverride;
+    [SerializeField] private bool _overrideHue;
+    [SerializeField, Range(-1f, 1f)] private float _hueOverride;
+
     [Header("Locks")]
     [SerializeField] private bool _lockFace;
     [SerializeField] private bool _lockHue;
@@ -35,7 +40,12 @@ public class WormVisuals : MonoBehaviour
         if (!_lockBlendShapes)
             RandomizeShapeKeys();
         if (!_lockScale)
+            RandomizeScale();
 
+        if (_faceOverride != default)
+            _targetRenderer.materials[1].SetTexture("_MainTex", _faceOverride);
+        if (_overrideHue)
+            _targetRenderer.materials[0].SetFloat("_Hue", _hueOverride);
 
         _headProps.SetParent(_headPropHolder);
     }
