@@ -187,7 +187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: event:/SFX/Worm and Gary/Grassy Movement
+  Event: event:/SFX/Worm and Gary/Grass Movement
   PlayEvent: 0
   StopEvent: 2
   AllowFadeout: 1
