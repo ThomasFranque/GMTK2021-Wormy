@@ -16174,6 +16174,10 @@ PrefabInstance:
       propertyPath: meshObject
       value: 
       objectReference: {fileID: 156249181}
+    - target: {fileID: 4668050604143725966, guid: 9c608c0017ecd6f40800d79be3e5ffea, type: 3}
+      propertyPath: Params.Array.data[0].Value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7744943742031490674, guid: 9c608c0017ecd6f40800d79be3e5ffea, type: 3}
       propertyPath: _Editor_FeaturesCategory
       value: 1
