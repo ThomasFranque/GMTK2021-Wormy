@@ -86,6 +86,7 @@ MonoBehaviour:
   blockMask:
     serializedVersion: 2
     m_Bits: 64
+  wormPrefab: {fileID: 7650294521947075854, guid: bd8510be8f2e1f144a0ff0bb1bef0010, type: 3}
 --- !u!114 &1037557276444728606
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,6 +150,19 @@ Transform:
   m_Father: {fileID: 1037557276444728602}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 40.703, z: 0}
+--- !u!114 &5217947202367362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7744943743101949810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cf78c05071e49749a69673ad14333ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particles: {fileID: 8867031842366933292, guid: a86d50ab81da5fc4d884824c730b593f, type: 3}
 --- !u!1001 &2415183439430667194
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -369,6 +383,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f527fd8e9f76a00429f642d653a0b93b, type: 3}
+--- !u!1 &7744943743101949810 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1070564234657953763, guid: f527fd8e9f76a00429f642d653a0b93b, type: 3}
+  m_PrefabInstance: {fileID: 7323126991828263057}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7744943743101949813 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1070564234657953764, guid: f527fd8e9f76a00429f642d653a0b93b, type: 3}

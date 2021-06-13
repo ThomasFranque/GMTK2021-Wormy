@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IWormGrabber
 {
-    void PickWorm();
+    void PickWorm(GameObject pickedWorm);
 }

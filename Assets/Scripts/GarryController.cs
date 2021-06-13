@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GarryController : MonoBehaviour, IWormGrabber
+public class GarryController : MonoBehaviour
 {
     [SerializeField] private float accelleration;
     [SerializeField] private float jumpHeight;
@@ -143,10 +143,6 @@ public class GarryController : MonoBehaviour, IWormGrabber
         Grounded = false;
     }
 
-    public void PickWorm()
-    {
-        Disabled = false;
-    }
 
     public event System.Action<float> groundHit;
 }
