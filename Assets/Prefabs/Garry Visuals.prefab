@@ -9789,7 +9789,12 @@ MonoBehaviour:
   _mesh: {fileID: 4925029059995341589}
   _wormStruggleParent: {fileID: 4070076133083738602}
   _slurpParticles: {fileID: 358938246}
+  _highFallParticles: {fileID: 11400000, guid: d3fa1d890ecf134499836ca0e11311fd, type: 2}
+  fallHeight: 3
   _shootParticles: {fileID: 2596578991645406457}
+  _grassHit: {fileID: 0}
+  _grassWalk: {fileID: 0}
+  _shootPop: {fileID: 0}
 --- !u!114 &1070564233614479075
 MonoBehaviour:
   m_ObjectHideFlags: 0
