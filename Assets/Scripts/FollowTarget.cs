@@ -19,7 +19,7 @@ public class FollowTarget : MonoBehaviour
         Cursor.visible = false;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (followTarget)
         {
