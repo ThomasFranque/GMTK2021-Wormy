@@ -6,18 +6,15 @@ using UnityEngine;
 public class WormRagdoll : MonoBehaviour
 {
     [SerializeField] private Transform _charStart;
-    private Rigidbody _rb;
     private List<Transform> _reset;
     private List<(Vector3, Quaternion)> _resetValues;
     private Rigidbody[] _rbs;
-    private NewWormMovement _movement;
     private WormVisuals _visuals;
 
     // Start is called before the first frame update
     void Awake()
     {
-        _rb = GetComponent<Rigidbody>();
-        _rbs = GetComponentsInChildren<Rigidbody>();
+        _rbs = transform.GetChild(0).gameObject.GetComponentsInChildren<Rigidbody>();
 
         _reset = new List<Transform>();
         _resetValues = new List<(Vector3, Quaternion)>();
@@ -38,7 +35,6 @@ public class WormRagdoll : MonoBehaviour
             }
         }
 
-        _movement = GetComponent<NewWormMovement>();
         _visuals = GetComponentInChildren<WormVisuals>();
     }
     public void EnableRagdoll()
@@ -53,7 +49,7 @@ public class WormRagdoll : MonoBehaviour
 
     private IEnumerator LerpTransforms()
     {
-        _movement.enabled = false;
+        NewWormMovement.Disabled = true;
 
         SwitchRigidBodyStates(true, false);
 
@@ -66,8 +62,6 @@ public class WormRagdoll : MonoBehaviour
         while(time < 2)
         {
             time += Time.deltaTime;
-            transform.position = Vector3.Lerp(transform.position, target, 2f * Time.deltaTime);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, 2f * Time.deltaTime);
 
             for (int i = 0; i < _reset.Count; i++)
             {
@@ -79,16 +73,13 @@ public class WormRagdoll : MonoBehaviour
 
         SwitchRigidBodyStates(true, true);
 
-        _movement.enabled = true;
+        NewWormMovement.Disabled = false;
         _visuals.ActivateTailAnimator();
         onRagDollEnd?.Invoke();
     }
 
     private void SwitchRigidBodyStates(bool state, bool gravityState)
     {
-        _rb.useGravity = gravityState;
-        _rb.isKinematic = state;
-
         for (int i = 0; i < _rbs.Length; i++)
         {
             _rbs[i].useGravity = gravityState;

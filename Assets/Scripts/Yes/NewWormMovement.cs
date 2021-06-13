@@ -4,83 +4,149 @@ using UnityEngine;
 
 public class NewWormMovement : MonoBehaviour
 {
-    [SerializeField] private float _playerSpeed = 2.0f;
-    [SerializeField] private float _jumpHeight = 1.0f;
-    [SerializeField] private float _gravityValue = -9.81f;
-
-    private CharacterController _controller;
-    private Vector3 _playerVelocity;
-    private Rigidbody _rb;
-    private Transform _cam;
     private WormRagdoll _ragdoll;
-
     public bool isRagDolling { get; private set; }
-    private Vector3 Forward => new Vector3(_cam.forward.x, 0, _cam.forward.z).normalized;
-    private Vector3 Right => Vector3.Cross(Vector3.up, Forward).normalized;
 
-    // Start is called before the first frame update
-    void Awake()
+    // Update is called once per frame
+    //void Update()
+    //{
+    //    if (_rb.velocity.magnitude <= 2 && !_controller.enabled && isRagDolling)
+    //    {
+    //        isRagDolling = false;
+    //        StartCoroutine(Switch());
+    //    }
+    //}
+
+
+    [SerializeField] private float accelleration;
+    [SerializeField] private float jumpHeight;
+    [Header("Some Visual things")]
+    //[SerializeField] private ParticleSystem highFallParticles;
+    [SerializeField] private float fallForParticles = 3f;
+
+    private static float gravity = Physics.gravity.y;
+    private Vector3 velocity;
+
+    public static bool Disabled { get; set; }
+    public bool Grounded { get; set; }
+    public Vector3 Velocity { get; set; }
+    public Vector3 InputDirection { get; private set; }
+
+    private Rigidbody rb;
+    private Transform cameraTransform;
+    private bool jump;
+    public bool Jumping { get; private set; }
+    private float endHeight;
+    private float initialHeight;
+    private bool lastFrameGrounded;
+
+    private void Awake()
     {
-        _controller = GetComponent<CharacterController>();
-        _rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
+        cameraTransform = Camera.main.transform;
         _ragdoll = GetComponent<WormRagdoll>();
-        _cam = Camera.main.transform;
+        Grounded = true;
+    }
+
+    private void FixedUpdate()
+    {
+        if (Disabled) return;
+
+        if (Grounded)
+        {
+            UpdateMovement();
+
+            if (jump)
+            {
+                jump = false;
+                ThrowWorm();
+            }
+        }
+
+        Align();
+        if (!Grounded && lastFrameGrounded)
+        {
+            // initial height
+            initialHeight = transform.position.y;
+        }
+        else if (Grounded && !lastFrameGrounded)
+        {
+            endHeight = transform.position.y;
+            if (isRagDolling)
+            {
+                isRagDolling = false;
+                StartCoroutine(Switch());
+            }
+
+            Debug.Log("Reached Ground");
+            if (Mathf.Abs(endHeight - initialHeight) >= fallForParticles)
+            {
+                //Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 1f, ~LayerMask.GetMask("Player"));
+                //highFallParticles.transform.forward = hit.normal;
+                //highFallParticles.Play();
+            }
+        }
+
+
+        if (rb.velocity.magnitude < 0.01f)
+            Grounded = true;
+
+        lastFrameGrounded = Grounded;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (_rb.velocity.magnitude <= 2 && !_controller.enabled && isRagDolling)
+        if (Disabled) return;
+
+        // Input
+        InputDirection = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
+        InputDirection.Normalize();
+        InputDirection = RelativeVectorTo(InputDirection, cameraTransform);
+
+        if (!jump)
+            jump = Input.GetButtonDown("Jump");
+
+        if (Jumping && Grounded)
         {
-            isRagDolling = false;
-            StartCoroutine(Switch());
-        }
-        if (_controller.enabled)
-        {
-            Move();
-            Align();
+            Jumping = false;
         }
     }
+
+    void UpdateMovement()
+    {
+        rb.AddForce(InputDirection * accelleration, ForceMode.Acceleration);
+        // rb.velocity = Vector3.ClampMagnitude(rb.velocity, topSpeed);
+    }
+    private Vector3 RelativeVectorTo(Vector3 original, Transform relative)
+    {
+        Vector3 right = relative.right;
+        right.y = 0f;
+        right.Normalize();
+
+        Vector3 forward = relative.forward;
+        forward.y = 0f;
+        forward.Normalize();
+
+        Vector3 finalDir = (forward * original.z) + (right * original.x);
+        finalDir.Normalize();
+        return finalDir;
+    }
+
 
     private void Align()
     {
         if (Physics.Raycast(transform.position, -transform.up, out RaycastHit hit, 0.5f))
         {
             Quaternion slopeRotation = Quaternion.FromToRotation(transform.up, hit.normal);
-            transform.rotation = Quaternion.Slerp(transform.rotation, slopeRotation * transform.rotation, 10 * Time.deltaTime);
+            transform.rotation = Quaternion.Slerp(transform.rotation, slopeRotation * transform.rotation, 20 * Time.deltaTime);
         }
-    }
-    private void Move()
-    {
-        bool isOnGround = _controller.isGrounded;
-
-        if (isOnGround && _playerVelocity.y < 0)
-        {
-            _playerVelocity.y = 0f;
-        }
-
-        Vector3 move = (Right * Input.GetAxis("Horizontal") + Forward * Input.GetAxis("Vertical"));
-        _controller.Move(move * Time.deltaTime * _playerSpeed);
-
-        if (move != Vector3.zero)
-        {
-            transform.forward = Vector3.Lerp(transform.forward, move, 10f * Time.deltaTime);
-        }
-
-        // Changes the height position of the player..
-        if (Input.GetButtonDown("Jump") && isOnGround)
-        {
-            ThrowWorm();
-        }
-        _playerVelocity.y += _gravityValue * Time.deltaTime;
-        _controller.Move(_playerVelocity * Time.deltaTime);
     }
 
     public void ThrowWorm()
     {
-        _controller.enabled = false;
         _ragdoll.EnableRagdoll();
-        _rb.AddForce((transform.forward + Vector3.up) * _jumpHeight, ForceMode.VelocityChange);
+        rb.AddForce((transform.forward + Vector3.up) * jumpHeight, ForceMode.VelocityChange);
         isRagDolling = true;
     }
 
@@ -88,6 +154,20 @@ public class NewWormMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(3);
         _ragdoll.DisableRagdoll();
-        _controller.enabled = true;
     }
+    private void OnCollisionEnter(Collision other)
+    {
+        Grounded = true;
+    }
+
+    private void OnCollisionStay(Collision other)
+    {
+        Grounded = true;
+    }
+
+    private void OnCollisionExit(Collision other)
+    {
+        Grounded = false;
+    }
+
 }
