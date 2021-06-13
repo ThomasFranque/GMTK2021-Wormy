@@ -85,7 +85,7 @@ MonoBehaviour:
   Preload: 0
   Params:
   - Name: Volume
-    Value: 0.5
+    Value: 0.519
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
