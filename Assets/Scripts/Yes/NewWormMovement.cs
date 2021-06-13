@@ -7,6 +7,7 @@ public class NewWormMovement : MonoBehaviour
     [SerializeField] private float _playerSpeed = 2.0f;
     [SerializeField] private float _jumpHeight = 1.0f;
     [SerializeField] private float _gravityValue = -9.81f;
+    [SerializeField] private float _stayRagDollTime = 3;
 
     private CharacterController _controller;
     private Vector3 _playerVelocity;
@@ -33,6 +34,7 @@ public class NewWormMovement : MonoBehaviour
 
     private void Update()
     {
+        if (!_controller.enabled) return;
         bool isOnGround = _controller.isGrounded;
 
         move = (Right * Input.GetAxis("Horizontal") + Forward * Input.GetAxis("Vertical"));
@@ -105,7 +107,7 @@ public class NewWormMovement : MonoBehaviour
 
     private IEnumerator Switch()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(_stayRagDollTime);
         _ragdoll.DisableRagdoll();
         _controller.enabled = true;
     }

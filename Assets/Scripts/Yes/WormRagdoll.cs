@@ -56,7 +56,7 @@ public class WormRagdoll : MonoBehaviour
         SwitchRigidBodyStates(true, false);
 
         float time = 0;
-        Vector3 target = transform.position + Vector3.up * 0.01f;
+        Vector3 target = transform.position + Vector3.up * 0.1f;
         Quaternion targetRot = transform.rotation;
         targetRot.x = 0;
         targetRot.z = 0;
@@ -64,13 +64,13 @@ public class WormRagdoll : MonoBehaviour
         while (time < 2)
         {
             time += Time.deltaTime;
-            transform.position = Vector3.Lerp(transform.position, target, 2f * Time.deltaTime);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, 2f * Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, target, 4f * Time.deltaTime);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, 4f * Time.deltaTime);
 
             for (int i = 0; i < _reset.Count; i++)
             {
-                _reset[i].localPosition = Vector3.Lerp(_reset[i].localPosition, _resetValues[i].Item1, 2f * Time.deltaTime);
-                _reset[i].localRotation = Quaternion.Lerp(_reset[i].localRotation, _resetValues[i].Item2, 2f * Time.deltaTime);
+                _reset[i].localPosition = Vector3.Lerp(_reset[i].localPosition, _resetValues[i].Item1, 4f * Time.deltaTime);
+                _reset[i].localRotation = Quaternion.Lerp(_reset[i].localRotation, _resetValues[i].Item2, 4f * Time.deltaTime);
             }
             yield return new WaitForEndOfFrame();
         }
