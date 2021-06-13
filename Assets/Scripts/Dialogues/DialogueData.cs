@@ -6,6 +6,7 @@ using UnityEngine;
 public class DialogueData : ScriptableObject
 {
     public string characterName;
+    public Color color = Color.white;
     [TextArea]
     public string[] lines;
     public bool giveLeaf;

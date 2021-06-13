@@ -15934,7 +15934,7 @@ MonoBehaviour:
   firstTimeDialogues:
   - {fileID: 11400000, guid: 26b67400de8deeb42a96462491bb491b, type: 2}
   randomDialogues:
-  - {fileID: 11400000, guid: 26b67400de8deeb42a96462491bb491b, type: 2}
+  - {fileID: 11400000, guid: a9c4f32bd1a9ee54ea893692421dd58e, type: 2}
   popUpPosition: {fileID: 912403659}
 --- !u!136 &2000738604
 CapsuleCollider:

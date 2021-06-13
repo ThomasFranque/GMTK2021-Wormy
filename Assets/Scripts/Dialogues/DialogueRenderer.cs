@@ -136,6 +136,8 @@ public class DialogueRenderer : MonoBehaviour
 
         dialogueCamera.gameObject.SetActive(true);
         dialogueObject.gameObject.SetActive(true);
+        NameTag tag = dialogueObject.GetComponentInChildren<NameTag>();
+        tag.SetTag(currentlyShowing);
         SetPosition(dialogueObject.transform, point.position);
         NextLine();
         dialogueQueued = true;
