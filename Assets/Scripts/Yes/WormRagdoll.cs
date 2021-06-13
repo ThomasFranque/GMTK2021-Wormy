@@ -11,6 +11,7 @@ public class WormRagdoll : MonoBehaviour
     private List<(Vector3, Quaternion)> _resetValues;
     private Rigidbody[] _rbs;
     private NewWormMovement _movement;
+    private WormVisuals _visuals;
 
     // Start is called before the first frame update
     void Awake()
@@ -38,11 +39,16 @@ public class WormRagdoll : MonoBehaviour
         }
 
         _movement = GetComponent<NewWormMovement>();
-        DisableRagdoll();
+        _visuals = GetComponentInChildren<WormVisuals>();
     }
     public void EnableRagdoll()
     {
+        _visuals.DeActivateTailAnimator(25);
         SwitchRigidBodyStates(false, true);
+    }
+    public void DisableRagdoll()
+    {
+        StartCoroutine(LerpTransforms());
     }
 
     private IEnumerator LerpTransforms()
@@ -53,11 +59,15 @@ public class WormRagdoll : MonoBehaviour
 
         float time = 0;
         Vector3 target = transform.position + Vector3.up * 0.01f;
+        Quaternion targetRot = transform.rotation;
+        targetRot.x = 0;
+        targetRot.z = 0;
 
         while(time < 2)
         {
             time += Time.deltaTime;
             transform.position = Vector3.Lerp(transform.position, target, 2f * Time.deltaTime);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, 2f * Time.deltaTime);
 
             for (int i = 0; i < _reset.Count; i++)
             {
@@ -70,6 +80,7 @@ public class WormRagdoll : MonoBehaviour
         SwitchRigidBodyStates(true, true);
 
         _movement.enabled = true;
+        _visuals.ActivateTailAnimator();
         onRagDollEnd?.Invoke();
     }
 
@@ -83,10 +94,6 @@ public class WormRagdoll : MonoBehaviour
             _rbs[i].useGravity = gravityState;
             _rbs[i].isKinematic = state;
         }
-    }
-    public void DisableRagdoll()
-    {
-        StartCoroutine(LerpTransforms());
     }
 
     public static Action onRagDollEnd;
