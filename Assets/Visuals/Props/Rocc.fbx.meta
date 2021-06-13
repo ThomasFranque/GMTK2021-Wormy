@@ -3,7 +3,12 @@ guid: 98d163dce4943dc4c9b70467c39a8c15
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rocc
+    second: {fileID: 2100000, guid: 0d3de7bd6ecc836499ae74c35ee137bc, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
