@@ -62,7 +62,6 @@ public class GarryHole : MonoBehaviour, IWormGrabber
                 ShootGary();
             }
 
-
             onShoot?.Invoke(shootWorm);
 
             shootWorm = false;
@@ -122,6 +121,8 @@ public class GarryHole : MonoBehaviour, IWormGrabber
         worm.transform.position = holeTransform.position;
         worm.transform.forward = holeTransform.forward;
         FollowTarget.Current.followTarget = worm.transform.Find("Pole");
+
+        worm.GetComponent<WormRagdoll>().EnableRagdoll();
         worm.GetComponent<Rigidbody>().AddForce(holeTransform.forward * HoleShootForce(wormForce));
     }
 
