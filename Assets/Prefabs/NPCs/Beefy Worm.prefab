@@ -713,6 +713,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5662357338829355, guid: 4b87fc7e992952d4082f534a0a7f8034, type: 3}
+      propertyPath: m_BlendShapeWeights.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5662357338829355, guid: 4b87fc7e992952d4082f534a0a7f8034, type: 3}
+      propertyPath: m_BlendShapeWeights.Array.data[0]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5662357338829355, guid: 4b87fc7e992952d4082f534a0a7f8034, type: 3}
+      propertyPath: m_BlendShapeWeights.Array.data[1]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5662357338829355, guid: 4b87fc7e992952d4082f534a0a7f8034, type: 3}
+      propertyPath: m_BlendShapeWeights.Array.data[2]
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5662357338829355, guid: 4b87fc7e992952d4082f534a0a7f8034, type: 3}
+      propertyPath: m_BlendShapeWeights.Array.data[3]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5662357338829355, guid: 4b87fc7e992952d4082f534a0a7f8034, type: 3}
+      propertyPath: m_BlendShapeWeights.Array.data[4]
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 4613004876522222965, guid: 4b87fc7e992952d4082f534a0a7f8034, type: 3}
       propertyPath: _lockFace
       value: 0
@@ -729,6 +753,10 @@ PrefabInstance:
       propertyPath: _faceOverride
       value: 
       objectReference: {fileID: 2800000, guid: 26c13a311d22067489849b2555a08f52, type: 3}
+    - target: {fileID: 4613004876522222965, guid: 4b87fc7e992952d4082f534a0a7f8034, type: 3}
+      propertyPath: _lockBlendShapes
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4613004877381044214, guid: 4b87fc7e992952d4082f534a0a7f8034, type: 3}
       propertyPath: m_RootOrder
       value: 0
