@@ -9,19 +9,20 @@ public class WormRagdoll : MonoBehaviour
     private List<Transform> _reset;
     private List<(Vector3, Quaternion)> _resetValues;
     private Rigidbody[] _rbs;
+    private NewWormMovement _movement;
     private WormVisuals _visuals;
 
     // Start is called before the first frame update
     void Awake()
     {
-        _rbs = transform.GetChild(0).gameObject.GetComponentsInChildren<Rigidbody>();
+        _rbs = GetComponentsInChildren<Rigidbody>();
 
         _reset = new List<Transform>();
         _resetValues = new List<(Vector3, Quaternion)>();
 
         Transform current = _charStart;
 
-        while (current != null) 
+        while (current != null)
         {
             _reset.Add(current);
             _resetValues.Add((current.localPosition, current.localRotation));
@@ -35,6 +36,7 @@ public class WormRagdoll : MonoBehaviour
             }
         }
 
+        _movement = GetComponent<NewWormMovement>();
         _visuals = GetComponentInChildren<WormVisuals>();
     }
     public void EnableRagdoll()
@@ -49,7 +51,7 @@ public class WormRagdoll : MonoBehaviour
 
     private IEnumerator LerpTransforms()
     {
-        NewWormMovement.Disabled = true;
+        _movement.enabled = false;
 
         SwitchRigidBodyStates(true, false);
 
@@ -59,9 +61,11 @@ public class WormRagdoll : MonoBehaviour
         targetRot.x = 0;
         targetRot.z = 0;
 
-        while(time < 2)
+        while (time < 2)
         {
             time += Time.deltaTime;
+            transform.position = Vector3.Lerp(transform.position, target, 2f * Time.deltaTime);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, 2f * Time.deltaTime);
 
             for (int i = 0; i < _reset.Count; i++)
             {
@@ -73,7 +77,7 @@ public class WormRagdoll : MonoBehaviour
 
         SwitchRigidBodyStates(true, true);
 
-        NewWormMovement.Disabled = false;
+        _movement.enabled = true;
         _visuals.ActivateTailAnimator();
         onRagDollEnd?.Invoke();
     }
