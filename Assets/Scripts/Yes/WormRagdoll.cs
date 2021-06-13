@@ -6,7 +6,6 @@ using UnityEngine;
 public class WormRagdoll : MonoBehaviour
 {
     [SerializeField] private Transform _charStart;
-    private Rigidbody _rb;
     private List<Transform> _reset;
     private List<(Vector3, Quaternion)> _resetValues;
     private Rigidbody[] _rbs;
@@ -16,7 +15,6 @@ public class WormRagdoll : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        _rb = GetComponent<Rigidbody>();
         _rbs = GetComponentsInChildren<Rigidbody>();
 
         _reset = new List<Transform>();
@@ -24,7 +22,7 @@ public class WormRagdoll : MonoBehaviour
 
         Transform current = _charStart;
 
-        while (current != null) 
+        while (current != null)
         {
             _reset.Add(current);
             _resetValues.Add((current.localPosition, current.localRotation));
@@ -58,21 +56,21 @@ public class WormRagdoll : MonoBehaviour
         SwitchRigidBodyStates(true, false);
 
         float time = 0;
-        Vector3 target = transform.position + Vector3.up * 0.01f;
+        Vector3 target = transform.position + Vector3.up * 0.1f;
         Quaternion targetRot = transform.rotation;
         targetRot.x = 0;
         targetRot.z = 0;
 
-        while(time < 2)
+        while (time < 2)
         {
             time += Time.deltaTime;
-            transform.position = Vector3.Lerp(transform.position, target, 2f * Time.deltaTime);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, 2f * Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, target, 4f * Time.deltaTime);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, 4f * Time.deltaTime);
 
             for (int i = 0; i < _reset.Count; i++)
             {
-                _reset[i].localPosition = Vector3.Lerp(_reset[i].localPosition, _resetValues[i].Item1, 2f * Time.deltaTime);
-                _reset[i].localRotation = Quaternion.Lerp(_reset[i].localRotation, _resetValues[i].Item2, 2f * Time.deltaTime);
+                _reset[i].localPosition = Vector3.Lerp(_reset[i].localPosition, _resetValues[i].Item1, 4f * Time.deltaTime);
+                _reset[i].localRotation = Quaternion.Lerp(_reset[i].localRotation, _resetValues[i].Item2, 4f * Time.deltaTime);
             }
             yield return new WaitForEndOfFrame();
         }
@@ -86,9 +84,6 @@ public class WormRagdoll : MonoBehaviour
 
     private void SwitchRigidBodyStates(bool state, bool gravityState)
     {
-        _rb.useGravity = gravityState;
-        _rb.isKinematic = state;
-
         for (int i = 0; i < _rbs.Length; i++)
         {
             _rbs[i].useGravity = gravityState;

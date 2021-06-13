@@ -7,16 +7,21 @@ public class NewWormMovement : MonoBehaviour
     [SerializeField] private float _playerSpeed = 2.0f;
     [SerializeField] private float _jumpHeight = 1.0f;
     [SerializeField] private float _gravityValue = -9.81f;
-    [SerializeField] private float _rotationBoost = 100;
+    [SerializeField] private float _stayRagDollTime = 3;
 
     private CharacterController _controller;
     private Vector3 _playerVelocity;
     private Rigidbody _rb;
     private Transform _cam;
     private WormRagdoll _ragdoll;
+
     public bool isRagDolling { get; private set; }
     private Vector3 Forward => new Vector3(_cam.forward.x, 0, _cam.forward.z).normalized;
     private Vector3 Right => Vector3.Cross(Vector3.up, Forward).normalized;
+
+    private bool _jump;
+    Vector3 move;
+    bool isOnGround;
 
     // Start is called before the first frame update
     void Awake()
@@ -27,8 +32,21 @@ public class NewWormMovement : MonoBehaviour
         _cam = Camera.main.transform;
     }
 
+    private void Update()
+    {
+        if (!_controller.enabled) return;
+        bool isOnGround = _controller.isGrounded;
+
+        move = (Right * Input.GetAxis("Horizontal") + Forward * Input.GetAxis("Vertical"));
+
+        if (Input.GetButtonDown("Jump") && isOnGround)
+        {
+            _jump = true;
+        }
+    }
+
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (_rb.velocity.magnitude <= 2 && !_controller.enabled && isRagDolling)
         {
@@ -52,14 +70,10 @@ public class NewWormMovement : MonoBehaviour
     }
     private void Move()
     {
-        bool isOnGround = _controller.isGrounded;
-
         if (isOnGround && _playerVelocity.y < 0)
         {
             _playerVelocity.y = 0f;
         }
-
-        Vector3 move = (Right * Input.GetAxis("Horizontal") + Forward * Input.GetAxis("Vertical"));
         _controller.Move(move * Time.deltaTime * _playerSpeed);
 
         if (move != Vector3.zero)
@@ -68,9 +82,10 @@ public class NewWormMovement : MonoBehaviour
         }
 
         // Changes the height position of the player..
-        if (Input.GetButtonDown("Jump") && isOnGround)
+        if (_jump)
         {
             ThrowWorm();
+            _jump = false;
         }
         _playerVelocity.y += _gravityValue * Time.deltaTime;
         _controller.Move(_playerVelocity * Time.deltaTime);
@@ -80,13 +95,19 @@ public class NewWormMovement : MonoBehaviour
     {
         _controller.enabled = false;
         _ragdoll.EnableRagdoll();
-        _rb.AddForce((transform.forward + Vector3.up) * _jumpHeight, ForceMode.VelocityChange);
+
+
+        Vector3 currentForce = _rb.velocity;
+        currentForce.y = 0;
+
+        _rb.velocity = currentForce + ((transform.forward + Vector3.up) * Mathf.Sqrt(2 * _jumpHeight * -Physics.gravity.y));
+
         isRagDolling = true;
     }
 
     private IEnumerator Switch()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(_stayRagDollTime);
         _ragdoll.DisableRagdoll();
         _controller.enabled = true;
     }
