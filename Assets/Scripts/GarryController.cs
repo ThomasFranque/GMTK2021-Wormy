@@ -20,6 +20,8 @@ public class GarryController : MonoBehaviour
     private Transform cameraTransform;
     private bool jump;
     public bool Jumping {get; private set;}
+    public Rigidbody Rb => rb;
+
     private float endHeight;
     private bool lastFrameGrounded;
     private RaycastHit hit;
