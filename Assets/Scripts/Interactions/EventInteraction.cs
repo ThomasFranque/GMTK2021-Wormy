@@ -8,6 +8,9 @@ public class EventInteraction : MonoBehaviour, IInteractable
     public UnityEvent inRange;
     public UnityEvent outOfRange;
     public UnityEvent interact;
+
+    public bool Canceled { get; set;}
+
     public void InRange()
     {
         inRange?.Invoke();

@@ -58,7 +58,9 @@ public class DialogueRenderer : MonoBehaviour
     public static void Show(DialogueData dialogue, Transform point)
     {
         if (current == null) return;
+        if (dialogue == null) return;
 
+        Displaying = false;
         current.currentlyShowing = dialogue;
         current.totalLines = dialogue.lines.Length;
         current.dialogueLine = 0;
@@ -72,7 +74,7 @@ public class DialogueRenderer : MonoBehaviour
         if (indicatorTween != null)
         {
             LeanTween.cancel(indicatorObject.gameObject);
-            LeanTween.cancel(indicatorTween.id);
+            LeanTween.cancel(indicatorTween.uniqueId);
         }
 
         if (point == null)
@@ -120,17 +122,6 @@ public class DialogueRenderer : MonoBehaviour
     {
         activeDialogue = point;
 
-        if (point == null)
-        {
-            dialogueCamera.gameObject.SetActive(false);
-            GarryController.Disabled = false;
-
-            indicatorObject.LeanAlpha(0f, 1f);
-            dialogueTween = LeanTween.scale(dialogueObject.transform.GetChild(0).gameObject, new Vector3(0.001f, 0.001f, 1f), .4f).
-                setEaseInBack().setOnComplete(() => dialogueObject.gameObject.SetActive(false));
-            return;
-        }
-
         dialogueObject.transform.GetChild(0).localScale = Vector3.one;
         dialogueObject.alpha = 0;
         GarryController.Disabled = true;
@@ -143,7 +134,6 @@ public class DialogueRenderer : MonoBehaviour
         NameTag tag = dialogueObject.GetComponentInChildren<NameTag>();
         tag.SetTag(currentlyShowing);
         SetPosition(dialogueObject.transform, point.position);
-        NextLine();
         dialogueQueued = true;
     }
 
@@ -156,31 +146,39 @@ public class DialogueRenderer : MonoBehaviour
 
         dialogueQueued = false;
 
-        dialogueObject.LeanAlpha(1.0f, 0.2f);
+        dialogueObject.alpha = 1.0f;
         dialogueTween = LeanTween.scale
             (dialogueObject.transform.GetChild(0).gameObject, new Vector3(1.5f, 1.5f, 1f), .8f).
             setEasePunch();
-        
+
         if (startSound)
         {
             startSound.transform.position = activeDialogue.position;
             startSound.Play();
         }
         Displaying = true;
+        NextLine(false);
     }
 
-    private void NextLine()
+    private void NextLine(bool playAudio = true)
     {
+        if (!Displaying) return;
+
         if (dialogueLine >= totalLines)
         {
             dialogueCamera.gameObject.SetActive(false);
             GarryController.Disabled = false;
 
-            indicatorObject.LeanAlpha(0f, 1f);
-            dialogueTween = LeanTween.scale(dialogueObject.transform.GetChild(0).gameObject, new Vector3(0.001f, 0.001f, 1f), .4f).
-                setEaseInBack().setOnComplete(() => dialogueObject.gameObject.SetActive(false));
-            Displaying = false;
+            LeanTween.cancel(dialogueObject.transform.GetChild(0).gameObject);
+            LeanTween.scale(dialogueObject.transform.GetChild(0).gameObject, new Vector3(0.001f, 0.001f, 1f), .4f).
+                setEaseInBack().setOnComplete(() =>
+                {
+                    dialogueObject.alpha = 0.0f;
+                    dialogueObject.gameObject.SetActive(false);
+                });
 
+
+            Displaying = false;
             endCallback?.Invoke();
             endCallback = null;
             return;
@@ -189,7 +187,7 @@ public class DialogueRenderer : MonoBehaviour
         Debug.Log("Dialogue: " + dialogueLine);
         textBox.text = currentlyShowing.lines[dialogueLine++];
 
-        if (nextLineSound)
+        if (nextLineSound && playAudio)
         {
             if (nextLineSound.IsPlaying()) nextLineSound.Stop();
             nextLineSound.transform.position = activeDialogue.position;

@@ -86,7 +86,7 @@ MonoBehaviour:
   blockMask:
     serializedVersion: 2
     m_Bits: 64
-  wormPrefab: {fileID: 7650294521947075854, guid: bd8510be8f2e1f144a0ff0bb1bef0010, type: 3}
+  wormPrefab: {fileID: 2824505161841721171, guid: 60cc152121b8dda4eaae2056f9e97633, type: 3}
 --- !u!114 &1037557276444728606
 MonoBehaviour:
   m_ObjectHideFlags: 0
