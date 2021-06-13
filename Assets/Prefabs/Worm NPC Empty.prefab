@@ -88,6 +88,9 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 65e436e163bd16d4981220f375c67a05, type: 3}
   _scaleRange: {x: 0.5, y: 1.5}
   _hueRange: {x: -0.8, y: 0.1}
+  _faceOverride: {fileID: 0}
+  _overrideHue: 0
+  _hueOverride: 0
   _lockFace: 0
   _lockHue: 0
   _lockBlendShapes: 0
@@ -1081,7 +1084,7 @@ MonoBehaviour:
   DetectZeroKeyframes: 1
   StartAfterTPose: 1
   OptimizeWithMesh: {fileID: 5662357338829355}
-  TailAnimatorAmount: 0.68
+  TailAnimatorAmount: 0.7
   DetachChildren: 0
   Axis2D: 0
   Tangle: 0
