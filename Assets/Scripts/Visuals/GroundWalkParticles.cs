@@ -9,7 +9,7 @@ public class GroundWalkParticles : MonoBehaviour
     private ParticleSystem instance;
     private ParticleSystem.MainModule mainModule;
     private RaycastHit hit;
-    private void Awake() 
+    private void Awake()
     {
         controller = GetComponentInParent<GarryController>();
         instance = Instantiate(particles, Vector3.zero, Quaternion.identity);
@@ -17,7 +17,7 @@ public class GroundWalkParticles : MonoBehaviour
         mainModule = instance.main;
     }
 
-    private void Update() 
+    private void Update()
     {
         instance.gameObject.SetActive(controller.Grounded);
 
@@ -25,14 +25,18 @@ public class GroundWalkParticles : MonoBehaviour
         {
             Renderer renderer = hit.collider.GetComponent<Renderer>();
             Texture2D tex = renderer.material.mainTexture as Texture2D;
-            Vector2 coord = hit.textureCoord;
-            coord.x *= tex.width;
-            coord.y *= tex.height;
+            if (renderer && tex)
+            {
+                Vector2 coord = hit.textureCoord;
 
-            Vector2 tiling = renderer.material.mainTextureScale;
-            Color color = tex.GetPixel(Mathf.FloorToInt(coord.x * tiling.x) , Mathf.FloorToInt(coord.y * tiling.y));
-            UniversalGameData.WalkingColor = color;
-            mainModule.startColor = color;
+                coord.x *= tex.width;
+                coord.y *= tex.height;
+
+                Vector2 tiling = renderer.material.mainTextureScale;
+                Color color = tex.GetPixel(Mathf.FloorToInt(coord.x * tiling.x), Mathf.FloorToInt(coord.y * tiling.y));
+                UniversalGameData.WalkingColor = color;
+                mainModule.startColor = color;
+            }
             instance.transform.position = hit.point;
         }
     }
