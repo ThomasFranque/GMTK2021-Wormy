@@ -4,20 +4,17 @@ using UnityEngine;
 
 public class MenuAnim : MonoBehaviour
 {
-    Vector3 pos;
-    private void Start()
-    {
-        pos = transform.position;
-    }
+    [SerializeField] private float _speed = 2f;
+
     public void TweenDown()
     {
+        if (transform.position.y < 1) return;
         gameObject.SetActive(true);
-        transform.position += Vector3.up * 50f;
-        LeanTween.moveY(gameObject, pos.y, 1f);
+        LeanTween.moveY(gameObject, 0, _speed);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        
+        LeanTween.moveY(gameObject, 15, _speed);
     }
 }
