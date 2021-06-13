@@ -63,7 +63,7 @@ public class GroundWalkParticles : MonoBehaviour
             float s;
             float v;
             Color.RGBToHSV(mColor, out h, out s, out v);
-            v = Mathf.Clamp(v - 0.3f, 0, 1);
+            v = Mathf.Clamp(v + Random.Range(-0.2f, 0.35f), 0, 1);
             mColor = Color.HSVToRGB(h, s, v);
 
             mainModule.startColor = mColor;
