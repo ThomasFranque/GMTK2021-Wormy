@@ -9736,6 +9736,7 @@ GameObject:
   - component: {fileID: 1070564234657953764}
   - component: {fileID: 1070564234657953765}
   - component: {fileID: 7249351329745409661}
+  - component: {fileID: 5356169462577012773}
   m_Layer: 0
   m_Name: Garry Visuals
   m_TagString: Untagged
@@ -9795,6 +9796,22 @@ MonoBehaviour:
   _grassHit: {fileID: 0}
   _grassWalk: {fileID: 0}
   _shootPop: {fileID: 0}
+--- !u!114 &5356169462577012773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1070564234657953763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2045a6ccb2d3d845b55ac59dec06da0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  t: {fileID: 0}
+  posX: 0
+  posZ: 0
+  textureValues: []
 --- !u!114 &1070564233614479075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10224,7 +10241,7 @@ MonoBehaviour:
     InitialLocalPosition: {x: -0, y: 0.11915815, z: 0}
     LocalOffset: {x: 0, y: 0, z: 0}
     InitialLocalRotation: {x: 0, y: -0, z: -0, w: 1}
-    ColliderRadius: 0.15490536
+    ColliderRadius: 0.15490544
     CollisionContactFlag: 0
     CollisionContactRelevancy: -1
     VelocityHelper: {x: 0, y: 0, z: 0}
@@ -10252,7 +10269,7 @@ MonoBehaviour:
     InitialLocalPosition: {x: 0, y: 0.11915767, z: 0}
     LocalOffset: {x: 0, y: 0, z: 0}
     InitialLocalRotation: {x: 0, y: -0, z: -0, w: 1}
-    ColliderRadius: 0.116179034
+    ColliderRadius: 0.11617908
     CollisionContactFlag: 0
     CollisionContactRelevancy: -1
     VelocityHelper: {x: -0.00027846353, y: 0.00012446642, z: 0.0007173712}
@@ -10280,7 +10297,7 @@ MonoBehaviour:
     InitialLocalPosition: {x: 0, y: 0.11915779, z: 0}
     LocalOffset: {x: 0, y: 0, z: 0}
     InitialLocalRotation: {x: 0, y: -0, z: -0, w: 1}
-    ColliderRadius: 0.116178885
+    ColliderRadius: 0.116179176
     CollisionContactFlag: 0
     CollisionContactRelevancy: -1
     VelocityHelper: {x: -0.0005538361, y: 0.00024969515, z: 0.0014471065}
@@ -10308,7 +10325,7 @@ MonoBehaviour:
     InitialLocalPosition: {x: 0, y: 0.11915767, z: 0}
     LocalOffset: {x: 0, y: 0, z: 0}
     InitialLocalRotation: {x: -0.42996, y: 5.250114e-17, z: 5.2501134e-17, w: 0.90284795}
-    ColliderRadius: 0.11617886
+    ColliderRadius: 0.11617908
     CollisionContactFlag: 0
     CollisionContactRelevancy: -1
     VelocityHelper: {x: -0.00080448, y: 0.000368747, z: 0.0021273028}
@@ -15813,7 +15830,7 @@ MonoBehaviour:
     InitialLocalPosition: {x: 6.3948846e-14, y: 1.0277805, z: -0.000000037577912}
     LocalOffset: {x: 0, y: 0, z: 0}
     InitialLocalRotation: {x: 1.6940659e-21, y: -5.0821977e-21, z: 2.842171e-14, w: 1}
-    ColliderRadius: 0.20556825
+    ColliderRadius: 0.20041725
     CollisionContactFlag: 0
     CollisionContactRelevancy: -1
     VelocityHelper: {x: 0, y: 0, z: 0}
@@ -15841,7 +15858,7 @@ MonoBehaviour:
     InitialLocalPosition: {x: -0.00000041547855, y: 1.0277796, z: -0.00000037878826}
     LocalOffset: {x: 0, y: 0, z: 0}
     InitialLocalRotation: {x: 0.000000057993553, y: 7.671991e-15, z: -2.534979e-15, w: 1}
-    ColliderRadius: 0.1541762
+    ColliderRadius: 0.15031293
     CollisionContactFlag: 0
     CollisionContactRelevancy: -1
     VelocityHelper: {x: 0, y: 0, z: 0}
@@ -15869,7 +15886,7 @@ MonoBehaviour:
     InitialLocalPosition: {x: -0.00000025366694, y: 1.0277805, z: -0.0000003412101}
     LocalOffset: {x: 0, y: 0, z: 0}
     InitialLocalRotation: {x: -0.000000057993553, y: -7.671991e-15, z: 2.534979e-15, w: 1}
-    ColliderRadius: 0.15167597
+    ColliderRadius: 0.15031292
     CollisionContactFlag: 0
     CollisionContactRelevancy: -1
     VelocityHelper: {x: 0, y: 0, z: 0}
@@ -15897,7 +15914,7 @@ MonoBehaviour:
     InitialLocalPosition: {x: 0.00000028067453, y: 1.0277796, z: -0.00000011747642}
     LocalOffset: {x: 0, y: 0, z: 0}
     InitialLocalRotation: {x: 0, y: -0, z: -0, w: 1}
-    ColliderRadius: 0.19390981
+    ColliderRadius: 0.15031292
     CollisionContactFlag: 0
     CollisionContactRelevancy: -1
     VelocityHelper: {x: 0, y: 0, z: 0}
@@ -15925,7 +15942,7 @@ MonoBehaviour:
     InitialLocalPosition: {x: -0.00000017839517, y: 1.0277796, z: -0.0000001991078}
     LocalOffset: {x: 0, y: 0, z: 0}
     InitialLocalRotation: {x: 0, y: -0, z: -0, w: 1}
-    ColliderRadius: 0.18903811
+    ColliderRadius: 0.15031293
     CollisionContactFlag: 0
     CollisionContactRelevancy: -1
     VelocityHelper: {x: 0, y: 0, z: 0}
@@ -15953,7 +15970,7 @@ MonoBehaviour:
     InitialLocalPosition: {x: -0.00000007867126, y: 1.0277786, z: -0.00000016153004}
     LocalOffset: {x: 0, y: 0, z: 0}
     InitialLocalRotation: {x: 0, y: -0, z: -0, w: 1}
-    ColliderRadius: 0.188401
+    ColliderRadius: 0.1503129
     CollisionContactFlag: 0
     CollisionContactRelevancy: -1
     VelocityHelper: {x: 0, y: 0, z: 0}
@@ -15981,7 +15998,7 @@ MonoBehaviour:
     InitialLocalPosition: {x: -0.00000007207938, y: 1.0277786, z: -0.00000024316105}
     LocalOffset: {x: 0, y: 0, z: 0}
     InitialLocalRotation: {x: 8.4703295e-22, y: -5.0821977e-21, z: 2.842171e-14, w: 1}
-    ColliderRadius: 0.18917827
+    ColliderRadius: 0.1503129
     CollisionContactFlag: 0
     CollisionContactRelevancy: -1
     VelocityHelper: {x: 0, y: 0, z: 0}
@@ -16009,7 +16026,7 @@ MonoBehaviour:
     InitialLocalPosition: {x: 0.00000013629784, y: 1.0277805, z: -0.00000032479187}
     LocalOffset: {x: 0, y: 0, z: 0}
     InitialLocalRotation: {x: -3.3881318e-21, y: 1.1858461e-20, z: -7.1054274e-14, w: 1}
-    ColliderRadius: 0.19064994
+    ColliderRadius: 0.15031296
     CollisionContactFlag: 0
     CollisionContactRelevancy: -1
     VelocityHelper: {x: 0, y: 0, z: 0}
@@ -16037,7 +16054,7 @@ MonoBehaviour:
     InitialLocalPosition: {x: -0.00000046246967, y: 1.0277805, z: 0.000000070413975}
     LocalOffset: {x: 0, y: 0, z: 0}
     InitialLocalRotation: {x: 8.4703295e-22, y: -1.6940659e-21, z: 1.4210855e-14, w: 1}
-    ColliderRadius: 0.1915182
+    ColliderRadius: 0.15031293
     CollisionContactFlag: 0
     CollisionContactRelevancy: -1
     VelocityHelper: {x: 0, y: 0, z: 0}
@@ -16065,7 +16082,7 @@ MonoBehaviour:
     InitialLocalPosition: {x: -0.00000023857018, y: 1.0277815, z: -0.000000488054}
     LocalOffset: {x: 0, y: 0, z: 0}
     InitialLocalRotation: {x: 0, y: -0, z: -0, w: 1}
-    ColliderRadius: 0.1926552
+    ColliderRadius: 0.15031296
     CollisionContactFlag: 0
     CollisionContactRelevancy: -1
     VelocityHelper: {x: 0, y: 0, z: 0}
@@ -16093,7 +16110,7 @@ MonoBehaviour:
     InitialLocalPosition: {x: 0.0000005441243, y: 1.0277796, z: -0.00000009284909}
     LocalOffset: {x: 0, y: 0, z: 0}
     InitialLocalRotation: {x: 0.000000057993553, y: 7.671972e-15, z: 1.1115186e-13, w: 1}
-    ColliderRadius: 0.19249673
+    ColliderRadius: 0.15031287
     CollisionContactFlag: 0
     CollisionContactRelevancy: -1
     VelocityHelper: {x: 0, y: 0, z: 0}
@@ -16121,7 +16138,7 @@ MonoBehaviour:
     InitialLocalPosition: {x: -0.00000028747434, y: 1.0277796, z: 0.00000018314768}
     LocalOffset: {x: 0, y: 0, z: 0}
     InitialLocalRotation: {x: -0.000000057993553, y: -7.6719704e-15, z: -1.2536272e-13, w: 1}
-    ColliderRadius: 0.1920386
+    ColliderRadius: 0.15031293
     CollisionContactFlag: 0
     CollisionContactRelevancy: -1
     VelocityHelper: {x: 0, y: 0, z: 0}
@@ -16710,7 +16727,7 @@ MonoBehaviour:
     InitialLocalPosition: {x: 6.617445e-24, y: 0.23036127, z: -0.000000014901161}
     LocalOffset: {x: 0, y: 0, z: 0}
     InitialLocalRotation: {x: -0.1724446, y: -2.1641276e-23, z: -3.8290462e-17, w: 0.98501927}
-    ColliderRadius: 0.26049057
+    ColliderRadius: 0.2607472
     CollisionContactFlag: 0
     CollisionContactRelevancy: -1
     VelocityHelper: {x: 0, y: 0, z: 0}
@@ -16738,7 +16755,7 @@ MonoBehaviour:
     InitialLocalPosition: {x: 4.6892313e-17, y: 0.20057283, z: 0.00000029802322}
     LocalOffset: {x: 0, y: 0, z: 0}
     InitialLocalRotation: {x: -0.07107543, y: 4.1448815e-24, z: -1.5781867e-17, w: 0.997471}
-    ColliderRadius: 0.19536793
+    ColliderRadius: 0.1955604
     CollisionContactFlag: 0
     CollisionContactRelevancy: -1
     VelocityHelper: {x: -0.036706254, y: -0.01062232, z: 0.004444758}
@@ -16766,7 +16783,7 @@ MonoBehaviour:
     InitialLocalPosition: {x: 5.5684806e-17, y: 0.20643905, z: -0.0000006835907}
     LocalOffset: {x: 0, y: 0, z: 0}
     InitialLocalRotation: {x: -0.17004742, y: -4.3639888e-24, z: -3.775816e-17, w: 0.9854359}
-    ColliderRadius: 0.19722699
+    ColliderRadius: 0.19746616
     CollisionContactFlag: 0
     CollisionContactRelevancy: -1
     VelocityHelper: {x: -0.06472585, y: 0.017062457, z: 0.0041590338}
@@ -17030,14 +17047,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -6911483863269185291, guid: ad92106c6b43c134ba409cae5103e085, type: 3}
   m_PrefabInstance: {fileID: 1070564234334465164}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &3681851629162317544 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -4772697455788053916, guid: ad92106c6b43c134ba409cae5103e085, type: 3}
-  m_PrefabInstance: {fileID: 1070564234334465164}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3275307285516917745 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -6652006999560915075, guid: ad92106c6b43c134ba409cae5103e085, type: 3}
+  m_PrefabInstance: {fileID: 1070564234334465164}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3681851629162317544 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -4772697455788053916, guid: ad92106c6b43c134ba409cae5103e085, type: 3}
   m_PrefabInstance: {fileID: 1070564234334465164}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6832583901452758684
@@ -17109,26 +17126,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03e31fed91f769a428c7ccfdc033a32b, type: 3}
---- !u!4 &8489021489439555888 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -6116690065703358548, guid: 03e31fed91f769a428c7ccfdc033a32b, type: 3}
-  m_PrefabInstance: {fileID: 6832583901452758684}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &427100492818528253 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6575092149458786657, guid: 03e31fed91f769a428c7ccfdc033a32b, type: 3}
-  m_PrefabInstance: {fileID: 6832583901452758684}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &7979755688064712750 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3490289017938046642, guid: 03e31fed91f769a428c7ccfdc033a32b, type: 3}
-  m_PrefabInstance: {fileID: 6832583901452758684}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &6438053614322289015 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 03e31fed91f769a428c7ccfdc033a32b, type: 3}
-  m_PrefabInstance: {fileID: 6832583901452758684}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4878620288061736752 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -7104884063784408660, guid: 03e31fed91f769a428c7ccfdc033a32b, type: 3}
@@ -17147,11 +17144,6 @@ Transform:
 --- !u!4 &1221461204444481636 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -3593390203752847624, guid: 03e31fed91f769a428c7ccfdc033a32b, type: 3}
-  m_PrefabInstance: {fileID: 6832583901452758684}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &2970879076796959058 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -583048904858441778, guid: 03e31fed91f769a428c7ccfdc033a32b, type: 3}
   m_PrefabInstance: {fileID: 6832583901452758684}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &3125768281692894124 stripped
@@ -17177,5 +17169,30 @@ Transform:
 --- !u!4 &7779315669075730439 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3830197932511415963, guid: 03e31fed91f769a428c7ccfdc033a32b, type: 3}
+  m_PrefabInstance: {fileID: 6832583901452758684}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8489021489439555888 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -6116690065703358548, guid: 03e31fed91f769a428c7ccfdc033a32b, type: 3}
+  m_PrefabInstance: {fileID: 6832583901452758684}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &427100492818528253 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6575092149458786657, guid: 03e31fed91f769a428c7ccfdc033a32b, type: 3}
+  m_PrefabInstance: {fileID: 6832583901452758684}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7979755688064712750 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3490289017938046642, guid: 03e31fed91f769a428c7ccfdc033a32b, type: 3}
+  m_PrefabInstance: {fileID: 6832583901452758684}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6438053614322289015 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 03e31fed91f769a428c7ccfdc033a32b, type: 3}
+  m_PrefabInstance: {fileID: 6832583901452758684}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2970879076796959058 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -583048904858441778, guid: 03e31fed91f769a428c7ccfdc033a32b, type: 3}
   m_PrefabInstance: {fileID: 6832583901452758684}
   m_PrefabAsset: {fileID: 0}
