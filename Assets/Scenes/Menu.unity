@@ -123,6 +123,34 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &5390349 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1284723871979584049, guid: ff875dcb2b560fc4786c1dad2f444efd, type: 3}
+  m_PrefabInstance: {fileID: 3901520848347931017}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5390350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5390349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  Event: event:/SFX/UI/Confirm
+  PlayEvent: 0
+  StopEvent: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1001 &29067321
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1960,7 +1988,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e890ada68afd50b4196d86dd4557a349, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _toLoadSceneIndex: 0
+  _toLoadSceneIndex: 1
 --- !u!4 &1419164526
 Transform:
   m_ObjectHideFlags: 0
@@ -3252,6 +3280,22 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 5583890851639173248, guid: 2b696cf24ad02c84b8027afb80cd3073, type: 2}
+    - target: {fileID: 3375420320555880391, guid: ff875dcb2b560fc4786c1dad2f444efd, type: 3}
+      propertyPath: Event
+      value: event:/SFX/UI/Interact and click
+      objectReference: {fileID: 0}
+    - target: {fileID: 3375420320555880391, guid: ff875dcb2b560fc4786c1dad2f444efd, type: 3}
+      propertyPath: StopEvent
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3375420320555880391, guid: ff875dcb2b560fc4786c1dad2f444efd, type: 3}
+      propertyPath: OverrideMaxDistance
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3375420320555880391, guid: ff875dcb2b560fc4786c1dad2f444efd, type: 3}
+      propertyPath: OverrideMinDistance
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3400351417719014898, guid: ff875dcb2b560fc4786c1dad2f444efd, type: 3}
       propertyPath: m_Size.x
       value: 4.35
@@ -3313,6 +3357,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 801194148}
     - target: {fileID: 8942085250726736547, guid: ff875dcb2b560fc4786c1dad2f444efd, type: 3}
+      propertyPath: _enteredSound
+      value: 
+      objectReference: {fileID: 5390350}
+    - target: {fileID: 8942085250726736547, guid: ff875dcb2b560fc4786c1dad2f444efd, type: 3}
+      propertyPath: _pressedSound
+      value: 
+      objectReference: {fileID: 3901520848347931018}
+    - target: {fileID: 8942085250726736547, guid: ff875dcb2b560fc4786c1dad2f444efd, type: 3}
       propertyPath: _onJumpOnButton.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -3342,3 +3394,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff875dcb2b560fc4786c1dad2f444efd, type: 3}
+--- !u!114 &3901520848347931018 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3375420320555880391, guid: ff875dcb2b560fc4786c1dad2f444efd, type: 3}
+  m_PrefabInstance: {fileID: 3901520848347931017}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5390349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -10,6 +10,9 @@ public class MenuButton : MonoBehaviour
 {
     [SerializeField] private UnityEvent _onJumpOnButton;
     [SerializeField] private GarryController _garry;
+    [SerializeField] private StudioEventEmitter _pressedSound;
+    [SerializeField] private StudioEventEmitter _enteredSound;
+
     private bool _entered;
     private TextMeshPro _text;
     private string _originalText;
@@ -27,11 +30,13 @@ public class MenuButton : MonoBehaviour
         if (_entered)
         {
             _onJumpOnButton?.Invoke();
+            _pressedSound.Play();
         }
     }
     private void OnTriggerEnter(Collider other)
     {
         _entered = true;
+        _enteredSound.Play();
         _text.text = "> " + _originalText + " <";
     }
     private void OnTriggerExit(Collider other)
