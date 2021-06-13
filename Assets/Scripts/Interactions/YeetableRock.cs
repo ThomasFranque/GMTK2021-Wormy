@@ -14,15 +14,18 @@ public class YeetableRock : MonoBehaviour
     [SerializeField] private float _neighborRadius = 1;
     [SerializeField] private float _speedMagnitudeToTrigger = 0.1f;
     [SerializeField] private float _explosionIntensityMod = 1f;
+    [SerializeField] private float _explosionYSpeedMod = 1f;
     [SerializeField] private float _SpeedGainOnBreakMod = 1f;
 
     Rigidbody _rb;
+    Collider _c;
 
     private bool collisionYeetLock;
     private YeetableRock[] _neighbors;
     private void Awake()
     {
         _rb = gameObject.AddComponent<Rigidbody>();
+        _c = GetComponent<Collider>();
         _rb.isKinematic = true;
     }
     private void Start()
@@ -39,14 +42,15 @@ public class YeetableRock : MonoBehaviour
         }
     }
 
-    public void Yeet(float explosionForce, Vector3 explosionPosition, float explosionRadius, float upwardsModifier, ForceMode mode)
+    public void Yeet(float explosionForce, Vector3 explosionPosition, float explosionRadius, float upwardsModifier, ForceMode mode, Collider garryC)
     {
         if (collisionYeetLock) return;
         _rb.isKinematic = false;
         _rb.AddExplosionForce(explosionForce, explosionPosition, explosionRadius, upwardsModifier, mode);
         collisionYeetLock = true;
         QueueDestruction();
-        OnYeeted?.Invoke(explosionForce, explosionPosition, explosionRadius, upwardsModifier, mode);
+        OnYeeted?.Invoke(explosionForce, explosionPosition, explosionRadius, upwardsModifier, mode, garryC);
+        Physics.IgnoreCollision(_c, garryC, true);
     }
 
     private void OnCollisionEnter(Collision other)
@@ -58,9 +62,9 @@ public class YeetableRock : MonoBehaviour
             float mag = garryController.Rb.velocity.magnitude;
             if (mag >= _speedMagnitudeToTrigger)
             {
-                Yeet(6 * _explosionIntensityMod, garryController.transform.position, 4, 1, ForceMode.Impulse);
+                Yeet(6 * _explosionIntensityMod, garryController.transform.position, 4, UnityEngine.Random.value * 30f * _explosionYSpeedMod, ForceMode.Impulse, other.collider);
                 _breakParticles.PlayPS(other.contacts[0].point);
-                garryController.Rb.AddForce(garryController.Rb.velocity.normalized * 8 * _SpeedGainOnBreakMod, ForceMode.Impulse);
+                garryController.Rb.AddForce(other.contacts[0].normal * 12 * _SpeedGainOnBreakMod, ForceMode.Impulse);
             }
             else
                 _teaseParticles.PlayPS(other.contacts[0].point);
@@ -83,5 +87,5 @@ public class YeetableRock : MonoBehaviour
             .setOnComplete(() => Destroy(gameObject));
     }
 
-    private Action<float, Vector3, float, float, ForceMode> OnYeeted;
+    private Action<float, Vector3, float, float, ForceMode, Collider> OnYeeted;
 }
