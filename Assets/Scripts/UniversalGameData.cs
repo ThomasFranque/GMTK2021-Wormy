@@ -10,6 +10,7 @@ using UnityEngine;
 public static class UniversalGameData
 {
     public static event System.Action leafAddedCallback;
+    public static List<DialogueData> dialoguesWithLeaf = new List<DialogueData>();
     private static int leafs;
     public static int TOTAL_GAME_LEAFS = 1;
     public static int Leafs 

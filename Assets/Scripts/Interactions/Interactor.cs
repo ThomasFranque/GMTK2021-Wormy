@@ -39,6 +39,13 @@ public class Interactor : MonoBehaviour
                 selectedInteractable.InRange();
             }
         }
+        else
+        {
+            if (selectedInteractable.Canceled)
+            {
+                selectedInteractable.InRange();
+            }
+        }
     }
 
     private void OnTriggerExit(Collider other) 
