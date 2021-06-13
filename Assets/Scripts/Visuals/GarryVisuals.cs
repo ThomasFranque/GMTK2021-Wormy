@@ -95,7 +95,7 @@ public class GarryVisuals : MonoBehaviour
             _wormStruggleParent.transform.localScale = Vector3.one;
             SetWormStruggleparent(true);
             LeanTween.scale(_wormStruggleParent, Vector3.one * 1.2f, 0.8f).setEasePunch();
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(UnityEngine.Random.Range(0.8f, 1.8f));
             LeanTween.cancel(_wormStruggleParent);
             LeanTween.scale(_wormStruggleParent, Vector3.one * 0.01f, 0.4f).setEaseInBack().setOnComplete(WormEnteredEnd);
         }
