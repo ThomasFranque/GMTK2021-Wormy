@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 413be1076b1f20e46a7486bd652ff403
+guid: 671098795df4da84d9e9f6df2f9e3274
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Tree Stump
-    second: {fileID: 2100000, guid: 82e21809e24438745b303bab1fce9f5f, type: 2}
+      name: Leaf
+    second: {fileID: 2100000, guid: 35e42596f5d83ab4f837715d7a6e067f, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -39,7 +39,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.75
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -90,7 +90,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.75
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
