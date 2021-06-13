@@ -57,7 +57,16 @@ public class GroundWalkParticles : MonoBehaviour
             //     particleSystemRenderer.material.SetColor("_BaseColor", color);
             // }
 
-            mainModule.startColor = UniversalGameData.WalkingColor;
+            // Add variation
+            Color mColor = UniversalGameData.WalkingColor;
+            float h;
+            float s;
+            float v;
+            Color.RGBToHSV(mColor, out h, out s, out v);
+            v = Mathf.Clamp(v - 0.3f, 0, 1);
+            mColor = Color.HSVToRGB(h, s, v);
+
+            mainModule.startColor = mColor;
             instance.transform.forward = hit.normal;
             instance.transform.position = hit.point;
         }
