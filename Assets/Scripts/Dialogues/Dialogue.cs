@@ -27,6 +27,11 @@ public class Dialogue : MonoBehaviour, IInteractable
 
     public void EndInteract()
     {
+        if (lastDialogue.giveLeaf)
+        {
+            UniversalGameData.Leafs++;
+        }
+        
         LeanTween.delayedCall(gameObject, 0.1f, () =>
         {
             GarryController.Disabled = false;

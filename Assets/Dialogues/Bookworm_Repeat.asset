@@ -10,12 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a2d64c70326edd4387b71b3219d5517, type: 3}
-  m_Name: HeyMoveAround
+  m_Name: Bookworm_Repeat
   m_EditorClassIdentifier: 
   characterName: Bookworm
+  color: {r: 1, g: 0.8117647, b: 0.64705884, a: 1}
   lines:
-  - Hey worm, I see you've gotten yourself a big red Garry there!
-  - You can move around with <b>WASD</b>
-  - Hold down <b>left mouse button</b> to shoot yourself out of Garry there.
-  - Just watch where the exit is  before firing!
+  - Be on your way now, neither you nor Garry will last forever!
   giveLeaf: 0

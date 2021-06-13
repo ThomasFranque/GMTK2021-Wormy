@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a2d64c70326edd4387b71b3219d5517, type: 3}
+  m_Name: Bookworm_HeyMoveAround
+  m_EditorClassIdentifier: 
+  characterName: Bookworm
+  color: {r: 1, g: 0.81115323, b: 0.6462264, a: 1}
+  lines:
+  - Hello Worm. I see you're still rolling that appl...
+  - I mean Garry, I see you're still rolling big red Garry around.
+  - Remember it's not hard to move Garry around with <b>WASD</b> but don't hit other
+    worms.
+  - If you want to leave Garry hold <b>LMB</b> and let it go, to launch yourself
+    out
+  - Mind the direction the hole in Garry's facing, you might just launch Garry itself.
+  - Oh I almost forgot, if you find any Leaves eat them. A strong worm is a fed worm.
+  giveLeaf: 0

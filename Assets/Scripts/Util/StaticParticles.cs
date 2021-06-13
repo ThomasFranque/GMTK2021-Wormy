@@ -65,6 +65,17 @@ public class StaticParticles : ScriptableObject
         return nextUsable;
     }
 
+    public void PlayPS(Vector3 worldPos, Vector3 forward, Transform parent = default)
+    {
+        CheckIfCreated();
+
+        LastUsed = GetNextUsable();
+        LastUsed.transform.SetParent(parent);
+        LastUsed.transform.position = worldPos;
+        LastUsed.transform.forward = forward;
+        LastUsed.Play();
+    }
+
     public void PlayPS(Vector3 worldPos, Transform parent = default)
     {
         CheckIfCreated();
@@ -74,6 +85,7 @@ public class StaticParticles : ScriptableObject
         LastUsed.transform.position = worldPos;
         LastUsed.Play();
     }
+
 
     public void StopLastUsedPS()
     {

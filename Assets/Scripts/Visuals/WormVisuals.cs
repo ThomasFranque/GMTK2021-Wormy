@@ -4,18 +4,27 @@ using UnityEngine;
 
 public class WormVisuals : MonoBehaviour
 {
-    [SerializeField] private Texture2D[] _faces;
-    [SerializeField] private Renderer _targetRenderer;
+    [Header("References")]
     [SerializeField] private FIMSpace.FTail.TailAnimator2 _tailAnimator;
-    [Space]
+    [SerializeField] private Renderer _targetRenderer;
+    [SerializeField] private Transform _headProps;
+    [SerializeField] private Transform _headPropHolder;
+
+    [Header("Visuals tweak")]
+    [SerializeField] private Texture2D[] _faces;
+    [SerializeField, Tooltip("X: Min, Y: Max")] private Vector2 _scaleRange = new Vector2(0.5f, 1.5f);
+    [SerializeField, Tooltip("X: Min, Y: Max")] private Vector2 _hueRange = new Vector2(-0.8f, 0.1f);
+
+    [Header("Visual Overrides")]
+    [SerializeField] private Texture2D _faceOverride;
+    [SerializeField] private bool _overrideHue;
+    [SerializeField, Range(-1f, 1f)] private float _hueOverride;
+
+    [Header("Locks")]
     [SerializeField] private bool _lockFace;
     [SerializeField] private bool _lockHue;
     [SerializeField] private bool _lockBlendShapes;
-
-    private void Awake()
-    {
-
-    }
+    [SerializeField] private bool _lockScale = true;
 
     private void Start()
     {
@@ -30,11 +39,20 @@ public class WormVisuals : MonoBehaviour
             RandomizeFace();
         if (!_lockBlendShapes)
             RandomizeShapeKeys();
+        if (!_lockScale)
+            RandomizeScale();
+
+        if (_faceOverride != default)
+            _targetRenderer.materials[1].SetTexture("_MainTex", _faceOverride);
+        if (_overrideHue)
+            _targetRenderer.materials[0].SetFloat("_Hue", _hueOverride);
+
+        _headProps.SetParent(_headPropHolder);
     }
 
     private void RandomizeHue()
     {
-        _targetRenderer.materials[0].SetFloat("_Hue", Random.Range(-0.8f, 0.1f));
+        _targetRenderer.materials[0].SetFloat("_Hue", Random.Range(_hueRange.x, _hueRange.y));
 
     }
 
@@ -50,6 +68,11 @@ public class WormVisuals : MonoBehaviour
         {
             skinned.SetBlendShapeWeight(i, Random.value * 100);
         }
+    }
+
+    private void RandomizeScale()
+    {
+        transform.localScale = Vector3.one * Random.Range(_scaleRange.x, _scaleRange.y);
     }
 
     // Animator events

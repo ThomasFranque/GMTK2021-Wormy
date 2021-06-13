@@ -18,7 +18,7 @@ public class PickUpWorm : MonoBehaviour
 
         if (other.gameObject.CompareTag("Worm"))
         {
-            grabber?.PickWorm();
+            grabber?.PickWorm(other.gameObject);
         }
     }
 }

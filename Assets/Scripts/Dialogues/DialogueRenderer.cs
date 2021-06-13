@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using TMPro;
+using FMODUnity;
 
 public class DialogueRenderer : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class DialogueRenderer : MonoBehaviour
     [SerializeField] private CanvasGroup dialogueObject;
     [SerializeField] private TextMeshProUGUI textBox;
     [SerializeField] private CinemachineVirtualCamera dialogueCamera;
+    [Header("Audio")]
+    [SerializeField] private StudioEventEmitter startSound;
+    [SerializeField] private StudioEventEmitter nextLineSound;
 
     public static bool Displaying { get; private set; }
     private DialogueData currentlyShowing;
@@ -115,6 +119,7 @@ public class DialogueRenderer : MonoBehaviour
     private void SetDialogue(Transform point)
     {
         activeDialogue = point;
+
         if (point == null)
         {
             dialogueCamera.gameObject.SetActive(false);
@@ -126,6 +131,8 @@ public class DialogueRenderer : MonoBehaviour
             return;
         }
 
+        dialogueObject.transform.GetChild(0).localScale = Vector3.one;
+        dialogueObject.alpha = 0;
         GarryController.Disabled = true;
 
         dialogueCamera.LookAt = point;
@@ -133,6 +140,8 @@ public class DialogueRenderer : MonoBehaviour
 
         dialogueCamera.gameObject.SetActive(true);
         dialogueObject.gameObject.SetActive(true);
+        NameTag tag = dialogueObject.GetComponentInChildren<NameTag>();
+        tag.SetTag(currentlyShowing);
         SetPosition(dialogueObject.transform, point.position);
         NextLine();
         dialogueQueued = true;
@@ -151,7 +160,12 @@ public class DialogueRenderer : MonoBehaviour
         dialogueTween = LeanTween.scale
             (dialogueObject.transform.GetChild(0).gameObject, new Vector3(1.5f, 1.5f, 1f), .8f).
             setEasePunch();
-
+        
+        if (startSound)
+        {
+            startSound.transform.position = activeDialogue.position;
+            startSound.Play();
+        }
         Displaying = true;
     }
 
@@ -174,6 +188,22 @@ public class DialogueRenderer : MonoBehaviour
 
         Debug.Log("Dialogue: " + dialogueLine);
         textBox.text = currentlyShowing.lines[dialogueLine++];
+
+        if (nextLineSound)
+        {
+            if (nextLineSound.IsPlaying()) nextLineSound.Stop();
+            nextLineSound.transform.position = activeDialogue.position;
+            nextLineSound.Play();
+        }
+
+        if (dialogueTween != null)
+        {
+            LeanTween.cancel(dialogueTween.uniqueId);
+        }
+
+        dialogueTween = LeanTween.scale
+            (dialogueObject.transform.GetChild(0).gameObject, new Vector3(1.2f, 1.2f, 1f), .8f).
+            setEasePunch();
     }
 
     private void SetPosition(Transform obj, Vector3 position)
