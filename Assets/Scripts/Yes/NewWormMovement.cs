@@ -85,7 +85,6 @@ public class NewWormMovement : MonoBehaviour
         if (_jump)
         {
             ThrowWorm();
-            _jump = false;
         }
         _playerVelocity.y += _gravityValue * Time.deltaTime;
         _controller.Move(_playerVelocity * Time.deltaTime);
@@ -101,6 +100,8 @@ public class NewWormMovement : MonoBehaviour
         currentForce.y = 0;
 
         _rb.velocity = currentForce + ((transform.forward + Vector3.up) * Mathf.Sqrt(2 * _jumpHeight * -Physics.gravity.y));
+
+        _jump = false;
 
         isRagDolling = true;
     }
