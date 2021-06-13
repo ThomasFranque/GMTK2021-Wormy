@@ -7,19 +7,22 @@ public class WormMovement : MonoBehaviour
 {
     [SerializeField] private float _torque;
     [SerializeField] private Transform _head;
+    [SerializeField] private float _snapToGroundStreght;
 
     private Rigidbody _rb;
+    private Animator _anim;
 
     // Start is called before the first frame update
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
+        _anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {            // Rotates the body to align to the floor normal
-        if (Physics.Raycast(transform.position + (transform.forward * 0.2f), Vector3.down,
+        if (Physics.Raycast(transform.position + (transform.forward), Vector3.down,
             out RaycastHit hit, 10f, LayerMask.GetMask("Default")))
         {
             Physics.Raycast(transform.position - (transform.forward * 0.2f), Vector3.down,
@@ -28,8 +31,17 @@ public class WormMovement : MonoBehaviour
             Quaternion newRot = Quaternion.FromToRotation
                 (transform.up, (hit.normal + hit2.normal).normalized) * transform.rotation;
 
-            transform.rotation = Quaternion.Slerp(transform.rotation, newRot, 10f * Time.deltaTime);
+            transform.rotation = Quaternion.Slerp(transform.rotation, newRot, _snapToGroundStreght * Time.deltaTime);
         }
+        if (Physics.SphereCast(_head.position + Vector3.up, 0.5f, Vector3.forward, out RaycastHit _, 5f))
+        {
+            _anim.applyRootMotion = false;
+        }
+        else
+        {
+            _anim.applyRootMotion = true;
+        }
+        
     }
     private void FixedUpdate()
     {
@@ -46,7 +58,7 @@ public class WormMovement : MonoBehaviour
     {
         Gizmos.DrawLine(_head.position, _head.position + Vector3.down * 5);
         Gizmos.color = Color.blue;
-        Gizmos.DrawSphere(transform.position + (transform.forward * 0.2f), 0.1f);
+        Gizmos.DrawSphere(transform.position + (transform.forward), 0.1f);
         Gizmos.DrawSphere(transform.position - (transform.forward * 0.2f), 0.1f);
     }
 }
