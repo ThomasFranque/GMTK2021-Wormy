@@ -9,6 +9,21 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: Tree Pointy
     second: {fileID: 2100000, guid: 4db8437718072754ab285dace1922fa1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree Pointy.001
+    second: {fileID: 2100000, guid: 4db8437718072754ab285dace1922fa1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree Pointy.002
+    second: {fileID: 2100000, guid: 4db8437718072754ab285dace1922fa1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tree Pointy.003
+    second: {fileID: 2100000, guid: 4db8437718072754ab285dace1922fa1, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -38,7 +53,11 @@ ModelImporter:
     clipAnimations: []
     isReadable: 0
   meshes:
-    lODScreenPercentages: []
+    lODScreenPercentages:
+    - 0.25
+    - 0.125
+    - 0.0625
+    - 0.01
     globalScale: 0.65
     meshCompression: 0
     addColliders: 0
