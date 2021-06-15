@@ -67,8 +67,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 204266550104d984e88868f7f728ed58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  accelleration: 1.5
-  jumpHeight: 0.4
+  accelleration: 1.7
+  jumpHeight: 0.45
   jumpSound: {fileID: 6750178608912694695}
 --- !u!114 &1037557276444728607
 MonoBehaviour:
