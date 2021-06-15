@@ -83,7 +83,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   garryForce: {x: 3.8303509, y: 6.8603506}
-  wormForce: {x: 8.17, y: 10}
+  wormForce: {x: 1, y: 5.32}
   debug: 1
   blockMask:
     serializedVersion: 2
@@ -389,6 +389,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 2526274073172063767, guid: f527fd8e9f76a00429f642d653a0b93b, type: 3}
+      propertyPath: OptimizeWithMesh
+      value: 
+      objectReference: {fileID: 3178769817951206587}
     - target: {fileID: 2599699059306288732, guid: f527fd8e9f76a00429f642d653a0b93b, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -451,5 +455,10 @@ GameObject:
 --- !u!4 &7744943743101949813 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1070564234657953764, guid: f527fd8e9f76a00429f642d653a0b93b, type: 3}
+  m_PrefabInstance: {fileID: 7323126991828263057}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &3178769817951206587 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 5313609283819625514, guid: f527fd8e9f76a00429f642d653a0b93b, type: 3}
   m_PrefabInstance: {fileID: 7323126991828263057}
   m_PrefabAsset: {fileID: 0}

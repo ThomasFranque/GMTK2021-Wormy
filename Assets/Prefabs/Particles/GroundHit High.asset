@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7cf49e07ebbedd49adf5c13fed4cb61, type: 3}
   m_Name: GroundHit High
   m_EditorClassIdentifier: 
-  _initialPoolSize: 5
+  _initialPoolSize: 1
   _particlePrefab: {fileID: 8831026392091495921, guid: f4d8147c954fb514f88e7e47476c41df, type: 3}

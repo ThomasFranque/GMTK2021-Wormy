@@ -25,6 +25,7 @@ public class WormVisuals : MonoBehaviour
     [SerializeField] private bool _lockHue;
     [SerializeField] private bool _lockBlendShapes;
     [SerializeField] private bool _lockScale = true;
+    [SerializeField] private bool _lockAnimatorSpeed;
 
     private void Start()
     {
@@ -41,6 +42,8 @@ public class WormVisuals : MonoBehaviour
             RandomizeShapeKeys();
         if (!_lockScale)
             RandomizeScale();
+        if (!_lockAnimatorSpeed)
+            RandomizeAnimatorSpeed();
 
         if (_faceOverride != default)
             _targetRenderer.materials[1].SetTexture("_MainTex", _faceOverride);
@@ -75,6 +78,15 @@ public class WormVisuals : MonoBehaviour
         transform.localScale = Vector3.one * Random.Range(_scaleRange.x, _scaleRange.y);
     }
 
+    private void RandomizeAnimatorSpeed()
+    {
+        Animator a = GetComponent<Animator>();
+        if (a == default)
+            a = GetComponentInChildren<Animator>();
+        if (a != default)
+            a.speed = Random.Range(0.75f, 1.35f);
+    }
+
     // Animator events
     public void ActivateTailAnimator()
     {
@@ -88,7 +100,7 @@ public class WormVisuals : MonoBehaviour
             StopCoroutine(TailAmmountAnimatorCor);
         TailAmmountAnimatorCor = StartCoroutine(CAnimateTailAnimatorAmount(0, 1.9f));
     }
-    
+
     public void ActivateTailAnimator(float to, float speedModifer)
     {
         if (TailAmmountAnimatorCor != default)

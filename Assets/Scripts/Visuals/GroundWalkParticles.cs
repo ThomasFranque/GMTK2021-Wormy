@@ -22,7 +22,11 @@ public class GroundWalkParticles : MonoBehaviour
 
     private void Update()
     {
-        instance.gameObject.SetActive(controller.Grounded);
+        if (instance.isEmitting && !controller.Grounded)
+            instance.Stop();
+        else if (!instance.isEmitting && controller.Grounded)
+            instance.Play();
+            
         if (Physics.Raycast(transform.position, Vector3.down, out hit, 20f, ~LayerMask.GetMask("Player")))
         {
             // Renderer renderer = hit.collider.GetComponent<Renderer>();

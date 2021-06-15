@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c7cf49e07ebbedd49adf5c13fed4cb61, type: 3}
-  m_Name: GroundHit High 1
+  m_Name: GroundHit Low
   m_EditorClassIdentifier: 
-  _initialPoolSize: 5
-  _particlePrefab: {fileID: 8831026392091495921, guid: f4d8147c954fb514f88e7e47476c41df, type: 3}
+  _initialPoolSize: 2
+  _particlePrefab: {fileID: 8831026392091495921, guid: a170e702cd9cd9d409fdc8a0343ef2c2, type: 3}

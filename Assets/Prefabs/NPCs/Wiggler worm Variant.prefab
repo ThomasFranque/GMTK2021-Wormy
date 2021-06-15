@@ -53,7 +53,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4613004877381044215, guid: 4b87fc7e992952d4082f534a0a7f8034, type: 3}
       propertyPath: m_Name
-      value: Wiggler worm
+      value: Wiggler worm Variant
       objectReference: {fileID: 0}
     - target: {fileID: 7354496447087825444, guid: 4b87fc7e992952d4082f534a0a7f8034, type: 3}
       propertyPath: randomDialogues.Array.data[0]
@@ -65,3 +65,77 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 67dade0d0c21149488cd3bae9abe3460, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b87fc7e992952d4082f534a0a7f8034, type: 3}
+--- !u!4 &5591249054733086697 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4613004877128188787, guid: 4b87fc7e992952d4082f534a0a7f8034, type: 3}
+  m_PrefabInstance: {fileID: 980856844874706074}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5434840272404142029
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 5591249054733086697}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: cddb8f963582d7248b09e64628b43c18, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cddb8f963582d7248b09e64628b43c18, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.3206
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cddb8f963582d7248b09e64628b43c18, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.3206
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cddb8f963582d7248b09e64628b43c18, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.3206
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cddb8f963582d7248b09e64628b43c18, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cddb8f963582d7248b09e64628b43c18, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.025
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cddb8f963582d7248b09e64628b43c18, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.013
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cddb8f963582d7248b09e64628b43c18, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.0000018890638
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cddb8f963582d7248b09e64628b43c18, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.00000069152634
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cddb8f963582d7248b09e64628b43c18, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.99102306
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cddb8f963582d7248b09e64628b43c18, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.13369127
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cddb8f963582d7248b09e64628b43c18, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 15.366
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cddb8f963582d7248b09e64628b43c18, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -180
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: cddb8f963582d7248b09e64628b43c18, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cddb8f963582d7248b09e64628b43c18, type: 3}
+      propertyPath: m_Name
+      value: Glasses
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cddb8f963582d7248b09e64628b43c18, type: 3}
