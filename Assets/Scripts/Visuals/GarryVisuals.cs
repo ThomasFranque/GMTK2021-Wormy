@@ -21,6 +21,7 @@ public class GarryVisuals : MonoBehaviour
 
     [Header("Peekaboo")]
     [SerializeField] private GameObject _peekabooWormParent;
+    [SerializeField] private FIMSpace.FTail.TailAnimator2 _peekabooTailAnimator;
 
     [Header("Audio")]
     [SerializeField] private FMODUnity.StudioEventEmitter _grassHit;
@@ -79,7 +80,7 @@ public class GarryVisuals : MonoBehaviour
         //! Swap to something that tells us that garry is inside
         bool garryInside = !GarryController.Disabled;
         SetPeekabooVisibility(garryInside);
-        
+
         if (!garryInside) return;
 
         _peekTimer -= Time.deltaTime;
@@ -88,7 +89,7 @@ public class GarryVisuals : MonoBehaviour
             Peekaboo(!_peekaBooing);
             _peekTimer = UnityEngine.Random.Range(5f, 12f);
         }
-        
+
         // Check for obstruction
         if (_peekaBooing)
         {
@@ -139,7 +140,28 @@ public class GarryVisuals : MonoBehaviour
 
     private void SetPeekabooVisibility(bool state)
     {
-        _peekabooWormParent.SetActive(state);
+        if (_peekabooWormParent.activeSelf != state)
+        {
+            _peekabooWormParent.SetActive(state);
+            StartCoroutine(CWeirdPeekabooTailanimatorWorkaround(state));
+        }
+
+    }
+
+    private IEnumerator CWeirdPeekabooTailanimatorWorkaround(bool state)
+    {
+        yield return new WaitForSeconds(0.01f);
+        // Weird workaround for tail animator stop playing after first disable
+        if (state)
+        {
+            _peekabooTailAnimator.TailAnimatorAmount = 1;
+            _peekabooTailAnimator.AnimatePhysics = FIMSpace.FTail.TailAnimator2.EFixedMode.Late;
+        }
+        else
+        {
+            _peekabooTailAnimator.TailAnimatorAmount = 0;
+            _peekabooTailAnimator.AnimatePhysics = FIMSpace.FTail.TailAnimator2.EFixedMode.None;
+        }
     }
 
     public void ShootEffects(bool shootWorm)
